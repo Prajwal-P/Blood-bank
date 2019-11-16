@@ -39,7 +39,9 @@ namespace BloodBank
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            LoginPage login = new LoginPage();
+            this.Hide();
+            login.Show();
         }
     }
 }

@@ -18,9 +18,9 @@ namespace BloodBank
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LoginPage : Window
     {
-        public MainWindow()
+        public LoginPage()
         {
             InitializeComponent();
         }
