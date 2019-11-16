@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         Title="Signup" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="13*"/>
+            <RowDefinition Height="22*"/>
+        </Grid.RowDefinitions>
+
     </Grid>
 </Window>
