@@ -1,11 +1,11 @@
-﻿<Window x:Class="LoginPage.MainWindow"
+﻿<Window x:Class="BloodBank.LoginPage"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LoginPage"
+        xmlns:local="clr-namespace:BloodBank"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1500"
+        Title="LoginPage" Height="800" Width="1500"
         WindowStartupLocation="CenterScreen" 
         ScrollViewer.VerticalScrollBarVisibility="Disabled" 
         WindowStyle="None"
@@ -62,18 +62,36 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="TitleBarButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="0" Background="#448AFF" BorderThickness="0" Padding="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid>
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Height="30" Width="1500" Background="#448AFF" MouseDown="Grid_MouseDown">
+            <Button Style="{StaticResource TitleBarButton}" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" BorderThickness="0" Background="#448AFF" Foreground="White" FontWeight="Bold" FontSize="20" HorizontalContentAlignment="Center"  VerticalContentAlignment="Top" Padding="0" Margin="0,0,6,0" Click="Close_Button_Click" Cursor="Hand">X</Button>
+            <Button HorizontalAlignment="Right" VerticalAlignment="Center" Width="16" Height="3" Background="White" BorderThickness="0" Margin="0,20,38,7" Click="Minimise_Button_Click" Cursor="Hand"></Button>
+        </Grid>
         <Border BorderThickness="1" BorderBrush="Black" CornerRadius="10" Width="590" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label Content="BLOOD BANK MANAGEMENT SYSTEM" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" FontFamily="Roboto" FontSize="30" FontWeight="Bold" Foreground="#707070"/>
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0" Width="590" Height="700">
+                <Label Content="BLOOD BANK MANAGEMENT SYSTEM" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" FontFamily="Roboto" FontSize="30" FontWeight="Bold" Foreground="#707070"/>
+                <Label Content="Username" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,240,204,0" FontSize="20" FontWeight="Bold" Foreground="#707070" Padding="0"/>
+                <TextBox x:Name="username" Template="{StaticResource TextBoxBaseControlTemplate}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="346" Height="50" Background="White" BorderThickness="1" Margin="0,284,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="16,0,0,0" FontSize="20"/>
+                <Label Content="Password" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,350,204,0" FontSize="20" FontWeight="Bold" Foreground="#707070" Padding="0"/>
+                <PasswordBox x:Name="password" Template="{StaticResource passwordbox}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="346" Height="50" Background="White" BorderThickness="1" Margin="0,392,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="16,0,0,0" FontSize="20"/>
+                <Button Style="{StaticResource RoundedButtonStyle}" Width="214" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,472,0,0" Content="Login" FontSize="26" FontWeight="Bold" Foreground="White" Cursor="Hand" Click="Button_Click"/>
+                <Label x:Name="inavlidLogin" Content="Invalid username or password, please verify your credentials" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,544,0,0" FontSize="20" Foreground="Red" Padding="0" Visibility="Hidden"/>
+                <Label Content="Don't have an account ?" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,594,0,0" FontSize="20" Foreground="#707070" Padding="0"/>
+                <Button x:Name="signUP" Content="SIGN UP NOW" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,628,0,0" FontSize="20" FontWeight="Bold" Foreground="#448AFF" Padding="0" BorderThickness="0" Background="#F2F3F4" Cursor="Hand" Click="signUP_Click"/>
+            </Grid>
         </Border>
-        <Label Content="Username" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="587,290,0,0" FontSize="20" FontWeight="Bold" Foreground="#707070" Padding="0"/>
-        <TextBox x:Name="username" Template="{StaticResource TextBoxBaseControlTemplate}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="346" Height="50" Background="White" BorderThickness="1" Margin="0,333,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="16,0,0,0" FontSize="20"/>
-        <Label Content="Password" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="587,399,0,0" FontSize="20" FontWeight="Bold" Foreground="#707070" Padding="0"/>
-        <PasswordBox x:Name="password" Template="{StaticResource passwordbox}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="346" Height="50" Background="White" BorderThickness="1" Margin="0,442,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="16,0,0,0" FontSize="20"/>
-        <Button Style="{StaticResource RoundedButtonStyle}" Width="214" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,522,0,0" Content="Login" FontSize="26" FontWeight="Bold" Foreground="White" Cursor="Hand" Click="Button_Click"/>
-        <Label x:Name="inavlidLogin" Content="Invalid username or password, please verify your credentials" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,595,0,0" FontSize="20" Foreground="Red" Padding="0" Visibility="Hidden"/>
-        <Label Content="Don't have an account ?" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,643,0,0" FontSize="20" Foreground="#707070" Padding="0"/>
-        <Button x:Name="signUP" Content="SIGN UP NOW" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,678,0,0" FontSize="20" FontWeight="Bold" Foreground="#448AFF" Padding="0" BorderThickness="0" Background="#F2F3F4" Cursor="Hand"/>
     </Grid>
 </Window>

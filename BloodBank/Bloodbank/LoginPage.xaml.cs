@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LoginPage
+namespace BloodBank
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LoginPage : Window
     {
-        public MainWindow()
+        public LoginPage()
         {
             InitializeComponent();
         }
@@ -30,12 +30,53 @@ namespace LoginPage
             if(username.Text.Equals("admin") && password.Password.Equals("admin"))
             {
                 inavlidLogin.Visibility = Visibility.Hidden;
-                MessageBox.Show("Login Success");
+                User user = new User();
+                this.Hide();
+                user.Show();
             }
             else
             {
                 inavlidLogin.Visibility = Visibility.Visible;
             }
         }
+
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private void Close_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void Minimise_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void signUP_Click(object sender, RoutedEventArgs e)
+        {
+            Signup signup = new Signup();
+            this.Hide();
+            signup.Show();
+        }
+        /* private void username_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+{
+   if(username.Text.Equals("Phone Number"))
+   {
+       username.Clear();
+       username.Foreground = new SolidColorBrush(Colors.Black);
+   }
+}
+
+private void username_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+{
+   if (username.Text.Equals(""))
+   {
+       username.Foreground = new SolidColorBrush(Colors.LightGray);
+       username.Text = "Phone Number";
+   }
+} */
     }
 }
