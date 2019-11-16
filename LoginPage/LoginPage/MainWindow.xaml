@@ -74,6 +74,6 @@
         <Button Style="{StaticResource RoundedButtonStyle}" Width="214" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,522,0,0" Content="Login" FontSize="26" FontWeight="Bold" Foreground="White" Cursor="Hand" Click="Button_Click"/>
         <Label x:Name="inavlidLogin" Content="Invalid username or password, please verify your credentials" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,595,0,0" FontSize="20" Foreground="Red" Padding="0" Visibility="Hidden"/>
         <Label Content="Don't have an account ?" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,643,0,0" FontSize="20" Foreground="#707070" Padding="0"/>
-        <Button x:Name="signUP" Content="SIGN UP NOW" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,678,0,0" FontSize="20" FontWeight="Bold" Foreground="#448AFF" Padding="0" BorderThickness="0" Background="#F2F3F4" Cursor="Hand" Click="signUP_Click"/>
+        <Button x:Name="signUP" Content="SIGN UP NOW" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,678,0,0" FontSize="20" FontWeight="Bold" Foreground="#448AFF" Padding="0" BorderThickness="0" Background="#F2F3F4" Cursor="Hand"/>
     </Grid>
 </Window>
