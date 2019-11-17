@@ -5,12 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BloodBank"
         mc:Ignorable="d"
-        Title="Signup" Height="450" Width="800">
+        Title="Signup" Height="800" Width="1500"
+        WindowStartupLocation="CenterScreen" 
+        ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+        WindowStyle="None"
+        Background="#F2F3F4">
+    <Window.Resources>
+        <Style x:Key="TitleBarButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="0" Background="#448AFF" BorderThickness="0" Padding="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="13*"/>
-            <RowDefinition Height="22*"/>
-        </Grid.RowDefinitions>
-
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Height="30" Width="1500" Background="#448AFF" MouseDown="Grid_MouseDown">
+            <Button Style="{StaticResource TitleBarButton}" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" BorderThickness="0" Background="#448AFF" Foreground="White" FontWeight="Bold" FontSize="20" HorizontalContentAlignment="Center"  VerticalContentAlignment="Top" Padding="0" Margin="0,0,6,0" Click="Close_Button_Click" Cursor="Hand">X</Button>
+            <Button HorizontalAlignment="Right" VerticalAlignment="Center" Width="16" Height="3" Background="White" BorderThickness="0" Margin="0,20,38,7" Click="Minimise_Button_Click" Cursor="Hand"></Button>
+        </Grid>
+        <Border BorderThickness="1" BorderBrush="Black" CornerRadius="10" Width="1000" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0" Width="590" Height="700">
+                <Label Content="REGISTER" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" FontFamily="Roboto" FontSize="30" FontWeight="Bold" Foreground="#FF008000"/>
+                <StackPanel Margin="0,80,0,0">
+                    <RadioButton Margin="30,15,0,0" Content="User" HorizontalAlignment="Left"  ></RadioButton>
+                    <RadioButton   Margin="30,15,0,0" Content="Medical Institute" HorizontalAlignment="Left" ></RadioButton>
+                    <Frame x:Name="Main" />
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Window>

@@ -23,5 +23,26 @@ namespace BloodBank
         {
             InitializeComponent();
         }
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private void Close_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void Minimise_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void signUP_Click(object sender, RoutedEventArgs e)
+        {
+            Signup signup = new Signup();
+            this.Hide();
+            signup.Show();
+        }
     }
 }
