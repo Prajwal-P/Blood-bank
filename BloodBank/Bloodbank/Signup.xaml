@@ -29,13 +29,17 @@
             <Button HorizontalAlignment="Right" VerticalAlignment="Center" Width="16" Height="3" Background="White" BorderThickness="0" Margin="0,20,38,7" Click="Minimise_Button_Click" Cursor="Hand"></Button>
         </Grid>
         <Border BorderThickness="1" BorderBrush="Black" CornerRadius="10" Width="1000" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0" Width="590" Height="700">
-                <Label Content="REGISTER" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" FontFamily="Roboto" FontSize="30" FontWeight="Bold" Foreground="#FF008000"/>
-                <StackPanel Margin="0,80,0,0">
-                    <RadioButton Margin="30,15,0,0" Content="User" HorizontalAlignment="Left"  ></RadioButton>
-                    <RadioButton   Margin="30,15,0,0" Content="Medical Institute" HorizontalAlignment="Left" ></RadioButton>
-                    <Frame x:Name="Main" />
-                </StackPanel>
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0" Width="1000" Height="700">
+                <Label Content="REGISTER" Width="150" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Margin="0,30,0,0" FontFamily="Roboto" FontSize="30" FontWeight="Bold" Foreground="#FF008000"/>
+                <Grid Height="24" Margin="70,83,659,593">
+                    <Viewbox Height="24" HorizontalAlignment="Left">
+                        <RadioButton GroupName="type" Click="userClick">User</RadioButton>
+                    </Viewbox>
+                    <Viewbox Height="24" HorizontalAlignment="Right">
+                        <RadioButton GroupName="type" Click="mIClick">Medical Institute</RadioButton>
+                    </Viewbox>
+                </Grid>
+                <Frame x:Name="signup" NavigationUIVisibility="Hidden" Width="1000" Height="580" VerticalAlignment="Bottom"></Frame>
             </Grid>
         </Border>
     </Grid>
