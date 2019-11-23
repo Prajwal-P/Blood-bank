@@ -62,21 +62,21 @@ namespace BloodBank
             signup.Show();
         }
         /* private void username_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
-{
-   if(username.Text.Equals("Phone Number"))
-   {
-       username.Clear();
-       username.Foreground = new SolidColorBrush(Colors.Black);
-   }
-}
+        {
+            if(username.Text.Equals("Phone Number"))
+            {
+                username.Clear();
+                username.Foreground = new SolidColorBrush(Colors.Black);
+            }
+        }
 
-private void username_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
-{
-   if (username.Text.Equals(""))
-   {
-       username.Foreground = new SolidColorBrush(Colors.LightGray);
-       username.Text = "Phone Number";
-   }
-} */
+        private void username_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            if (username.Text.Equals(""))
+            {
+                username.Foreground = new SolidColorBrush(Colors.LightGray);
+                username.Text = "Phone Number";
+            }
+        } */
     }
 }
