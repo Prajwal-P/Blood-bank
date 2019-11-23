@@ -9,7 +9,8 @@
         WindowStartupLocation="CenterScreen" 
         ScrollViewer.VerticalScrollBarVisibility="Disabled" 
         WindowStyle="None"
-        Background="#F2F3F4">
+        Background="#F2F3F4"
+        BorderThickness="0">
     <Window.Resources>
         <ControlTemplate x:Key="TextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
             <Border Background="{TemplateBinding Background}" 
