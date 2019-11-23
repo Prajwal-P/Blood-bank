@@ -38,11 +38,14 @@ namespace BloodBank
             this.WindowState = WindowState.Minimized;
         }
 
-        private void signUP_Click(object sender, RoutedEventArgs e)
+        private void userClick(object sender, RoutedEventArgs e)
         {
-            Signup signup = new Signup();
-            this.Hide();
-            signup.Show();
+            signup.Content = new user();
+        }
+
+        private void mIClick(object sender, RoutedEventArgs e)
+        {
+            signup.Content = new med_inst();
         }
     }
 }
