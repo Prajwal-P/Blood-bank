@@ -25,6 +25,7 @@ namespace BloodBank
             InitializeComponent();
         }
 
+        Database db = new Database();
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if(username.Text.Equals("admin") && password.Password.Equals("admin"))
