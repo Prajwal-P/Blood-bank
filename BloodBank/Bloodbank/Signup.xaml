@@ -31,6 +31,10 @@
         <Border BorderThickness="1" BorderBrush="Black" CornerRadius="10" Width="1000" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0" Width="1000" Height="700">
                 <Label Content="REGISTER" Width="150" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Margin="0,30,0,0" FontFamily="Roboto" FontSize="30" FontWeight="Bold" Foreground="#FF008000"/>
+                <Grid Width="100" Height="36" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,25,0">
+                    <Label Content="←" Width="50" Height="46" HorizontalAlignment="Left" VerticalContentAlignment="Top" Padding="0" Margin="0,0,0,0" FontFamily="Roboto" FontSize="30" FontWeight="Bold" Foreground="#78909C"/>
+                    <Label Content="Back" Width="60" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="18,4,0,0" FontFamily="Roboto" FontSize="20" FontWeight="Bold" Foreground="#78909C" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                </Grid>
                 <Grid Height="24" Margin="70,83,659,593">
                     <Viewbox Height="24" HorizontalAlignment="Left">
                         <RadioButton GroupName="type" Click="userClick">User</RadioButton>
@@ -39,7 +43,7 @@
                         <RadioButton GroupName="type" Click="mIClick">Medical Institute</RadioButton>
                     </Viewbox>
                 </Grid>
-                <Frame x:Name="signup" NavigationUIVisibility="Hidden" Width="1000" Height="580" VerticalAlignment="Bottom"></Frame>
+                <Frame x:Name="signup" NavigationUIVisibility="Hidden" Width="1000" Height="580" VerticalAlignment="Bottom" Margin="-1,0,1,0"></Frame>
             </Grid>
         </Border>
     </Grid>
