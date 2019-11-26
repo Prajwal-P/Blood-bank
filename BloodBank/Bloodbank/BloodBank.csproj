@@ -92,8 +92,8 @@
     <Compile Include="user.xaml.cs">
       <DependentUpon>user.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserPage.xaml.cs">
-      <DependentUpon>UserPage.xaml</DependentUpon>
+    <Compile Include="UserDashboard.xaml.cs">
+      <DependentUpon>UserDashboard.xaml</DependentUpon>
     </Compile>
     <Page Include="LoginPage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -119,7 +119,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserPage.xaml">
+    <Page Include="UserDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

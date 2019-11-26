@@ -10,14 +10,15 @@ namespace BloodBank
 {
     public class Database
     {
-        public SQLiteConnection con = new SQLiteConnection("Data Source=../../BloodBankDB.sqlite3;Version=3;");
+        public SQLiteConnection con;
         public Database()
         {
             if (!File.Exists("../../BloodBankDB.sqlite3"))
             {
                 SQLiteConnection.CreateFile("../../BloodBankDB.sqlite3");
+                con = new SQLiteConnection("Data Source=../../BloodBankDB.sqlite3;Version=3;");
                 con.Open();
-                string query = "CREATE TABLE MED_INST (MI_ID INTEGER PRIMARY KEY AUTOINCREMENT,	NAME CHAR(20) NOT NULL UNIQUE, PHONE NUMBER(10) NOT NULL, LOCATION CHAR(30) NOT NULL, CITY CHAR(30) NOT NULL, WEBSITE CHAR(30), EMAIL CHAR(20) NOT NULL, PASSWORD CHAR(50) NOT NULL, TYPE_OF_MI CHAR(1));";
+                string query = "CREATE TABLE MED_INST (MI_ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,	NAME CHAR(20) NOT NULL UNIQUE, PHONE NUMBER(10) NOT NULL, LOCATION CHAR(30) NOT NULL, CITY CHAR(30) NOT NULL, WEBSITE CHAR(30) NOT NULL, EMAIL CHAR(20) NOT NULL, PASSWORD CHAR(50) NOT NULL, TYPE_OF_MI CHAR(1));";
                 SQLiteCommand cmd = new SQLiteCommand(query, con);
                 cmd.ExecuteNonQuery();
                 query = "CREATE TABLE USER ( PH_NO NUMBER(10) PRIMARY KEY, NAME CHAR(20) NOT NULL, B_GRP CHAR(3) NOT NULL, EMAIL CHAR(20) NOT NULL UNIQUE, LOCATION CHAR(20) NOT NULL, CITY CHAR(30) NOT NULL, PASSWORD CHAR(50) NOT NULL, TYPE_OF_USER CHAR(1) NOT NULL DEFAULT 'R', MI_ID INTEGER, FOREIGN KEY(MI_ID) REFERENCES MED_INST(MI_ID) ON DELETE CASCADE);";
@@ -36,7 +37,8 @@ namespace BloodBank
         }
         public void openConnection()
         {
-            if(con.State != System.Data.ConnectionState.Open)
+            con = new SQLiteConnection("Data Source=../../BloodBankDB.sqlite3;Version=3;");
+            if (con.State != System.Data.ConnectionState.Open)
             {
                 con.Open();
             }
@@ -47,6 +49,11 @@ namespace BloodBank
             {
                 con.Close();
             }
+        }
+        public static SQLiteConnection connecton()
+        {
+            SQLiteConnection c = new SQLiteConnection("Data Source=../../BloodBankDB.sqlite3;Version=3;"); 
+            return c;
         }
     }
 }
