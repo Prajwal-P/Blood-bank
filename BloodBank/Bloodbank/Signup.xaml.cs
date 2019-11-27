@@ -47,5 +47,12 @@ namespace BloodBank
         {
             signup.Content = new med_inst();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            LoginPage loginPage = new LoginPage();
+            this.Hide();
+            loginPage.Show();
+        }
     }
 }

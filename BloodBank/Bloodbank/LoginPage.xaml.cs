@@ -44,9 +44,9 @@ namespace BloodBank
                 try
                 {
                     SQLiteDataReader result = cmd.ExecuteReader();
-                    if (result.Read())
+                    if (result.HasRows)
                     {
-                        if (result.HasRows)
+                        if (result.Read())
                         {
                             if (password.Password.Equals(result["PASSWORD"]))
                             {
@@ -76,9 +76,9 @@ namespace BloodBank
                 {
                     MessageBox.Show(excp.Message);
                 }
-                //catch (Exception excp)
+                catch (Exception excp)
                 {
-                //    MessageBox.Show(excp.Message);
+                    MessageBox.Show(excp.Message);
                 }
                 d.closeConnection();
             }
