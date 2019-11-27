@@ -83,6 +83,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Database.cs" />
+    <Compile Include="HosDashboard.xaml.cs">
+      <DependentUpon>HosDashboard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="med_inst.xaml.cs">
       <DependentUpon>med_inst.xaml</DependentUpon>
     </Compile>
@@ -95,6 +98,10 @@
     <Compile Include="UserDashboard.xaml.cs">
       <DependentUpon>UserDashboard.xaml</DependentUpon>
     </Compile>
+    <Page Include="HosDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
