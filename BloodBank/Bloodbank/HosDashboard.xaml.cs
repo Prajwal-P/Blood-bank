@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace BloodBank
 {
     /// <summary>
-    /// Interaction logic for Signup.xaml
+    /// Interaction logic for HosDashboard.xaml
     /// </summary>
-    public partial class Signup : Window
+    public partial class HosDashboard : Window
     {
-        public Signup()
+        public HosDashboard()
         {
             InitializeComponent();
         }
@@ -37,22 +37,11 @@ namespace BloodBank
         {
             this.WindowState = WindowState.Minimized;
         }
-
-        private void userClick(object sender, RoutedEventArgs e)
-        {
-            signup.Content = new user();
-        }
-
-        private void mIClick(object sender, RoutedEventArgs e)
-        {
-            signup.Content = new med_inst();
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            LoginPage loginPage = new LoginPage();
+            LoginPage login = new LoginPage();
             this.Hide();
-            loginPage.Show();
+            login.Show();
         }
     }
 }
