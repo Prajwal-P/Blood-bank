@@ -44,23 +44,25 @@ namespace BloodBank
                 try
                 {
                     SQLiteDataReader result = cmd.ExecuteReader();
-                    if (result.HasRows)
+                    if (result.Read())
                     {
-                        //Console.WriteLine("email=" + result["EMAIL"].ToString() + "\npass=" + result["PASSWORD"].ToString());
-                        if (password.Password.Equals(result["PASSWORD"]))
+                        if (result.HasRows)
                         {
-                            inavlidLogin.Visibility = Visibility.Hidden;
-                            empty.Visibility = Visibility.Hidden;
-                            notFound.Visibility = Visibility.Hidden;
-                            User user = new User();
-                            this.Hide();
-                            user.Show();
-                        }
-                        else
-                        {
-                            empty.Visibility = Visibility.Hidden;
-                            notFound.Visibility = Visibility.Hidden;
-                            inavlidLogin.Visibility = Visibility.Visible;
+                            if (password.Password.Equals(result["PASSWORD"]))
+                            {
+                                inavlidLogin.Visibility = Visibility.Hidden;
+                                empty.Visibility = Visibility.Hidden;
+                                notFound.Visibility = Visibility.Hidden;
+                                User user = new User();
+                                this.Hide();
+                                user.Show();
+                            }
+                            else
+                            {
+                                empty.Visibility = Visibility.Hidden;
+                                notFound.Visibility = Visibility.Hidden;
+                                inavlidLogin.Visibility = Visibility.Visible;
+                            }
                         }
                     }
                     else
@@ -74,9 +76,9 @@ namespace BloodBank
                 {
                     MessageBox.Show(excp.Message);
                 }
-                catch (Exception excp)
+                //catch (Exception excp)
                 {
-                    MessageBox.Show(excp.Message);
+                //    MessageBox.Show(excp.Message);
                 }
                 d.closeConnection();
             }
