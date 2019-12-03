@@ -29,7 +29,7 @@ namespace BloodBank
         Database db = new Database();
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(username.Text.Equals("") || password.Password.Equals(""))
+            if(username.Text.Equals("Email") || password.Password.Equals(""))
             {
                 inavlidLogin.Visibility = Visibility.Hidden;
                 notFound.Visibility = Visibility.Hidden;
@@ -41,9 +41,34 @@ namespace BloodBank
                 d.openConnection();
                 string query = "SELECT EMAIL,PASSWORD FROM USER WHERE EMAIL='" + username.Text + "';";
                 SQLiteCommand cmd = new SQLiteCommand(query, d.con);
-                try
+                SQLiteDataReader result = cmd.ExecuteReader();
+                if (result.HasRows)
                 {
-                    SQLiteDataReader result = cmd.ExecuteReader();
+                    if (result.Read())
+                    {
+                        if (password.Password.Equals(result["PASSWORD"]))
+                        {
+                            inavlidLogin.Visibility = Visibility.Hidden;
+                            empty.Visibility = Visibility.Hidden;
+                            notFound.Visibility = Visibility.Hidden;
+                            d.closeConnection();
+                            User user = new User();
+                            this.Hide();
+                            user.Show();
+                        }
+                        else
+                        {
+                            empty.Visibility = Visibility.Hidden;
+                            notFound.Visibility = Visibility.Hidden;
+                            inavlidLogin.Visibility = Visibility.Visible;
+                        }
+                    }
+                }
+                else
+                {
+                    query = "SELECT EMAIL,PASSWORD FROM MED_INST WHERE EMAIL='" + username.Text + "';";
+                    cmd = new SQLiteCommand(query, d.con);
+                    result = cmd.ExecuteReader();
                     if (result.HasRows)
                     {
                         if (result.Read())
@@ -53,9 +78,10 @@ namespace BloodBank
                                 inavlidLogin.Visibility = Visibility.Hidden;
                                 empty.Visibility = Visibility.Hidden;
                                 notFound.Visibility = Visibility.Hidden;
-                                User user = new User();
+                                d.closeConnection();
+                                HosDashboard hos = new HosDashboard();
                                 this.Hide();
-                                user.Show();
+                                hos.Show();
                             }
                             else
                             {
@@ -72,15 +98,6 @@ namespace BloodBank
                         notFound.Visibility = Visibility.Visible;
                     }
                 }
-                catch(SQLiteException excp)
-                {
-                    MessageBox.Show(excp.Message);
-                }
-                catch (Exception excp)
-                {
-                    MessageBox.Show(excp.Message);
-                }
-                d.closeConnection();
             }
             //if(username.Text.Equals("admin") && password.Password.Equals("admin"))
             //{
