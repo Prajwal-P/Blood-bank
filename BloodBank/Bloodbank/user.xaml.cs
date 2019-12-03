@@ -28,26 +28,27 @@ namespace BloodBank
 
         private void submit_Click(object sender, RoutedEventArgs e)
         {
-            if (name.Text.Equals("") || email.Text.Equals("") || ph_no.Text.Equals("") || b_group.Text.Equals("") || location.Text.Equals("") || city.Text.Equals("") || password.Text.Equals("") || confirm_password.Text.Equals(""))
+            if (name.Text.Equals("") || email.Text.Equals("") || ph_no.Text.Equals("") || b_group.Text.Equals("") || location.Text.Equals("") || city.Text.Equals("") || password.Password.Equals("") || confirm_password.Password.Equals(""))
             {
+                phNo.Visibility = Visibility.Hidden;
                 passError.Visibility = Visibility.Hidden;
                 empty.Visibility = Visibility.Visible;
             }
-            else if (!password.Text.Equals(confirm_password.Text))
+            //else if(ph_no.Text.ToString().Length() == 10)
+            else if (!password.Password.Equals(confirm_password.Password))
             {
+                phNo.Visibility = Visibility.Hidden;
                 empty.Visibility = Visibility.Hidden;
                 passError.Visibility = Visibility.Visible;
             }
             else
             {
-                char t = 'R';
-                string[] q = type.SelectedItem.ToString().Split(':');
-                string a = q[1].Trim();
-                if ("Donor".Equals(a))
+                char t = 'R';           
+                if ("Donor".Equals(type.Text))
                 {
                     t = 'D';
                 }
-                else if ("Recipient".Equals(a))
+                else if ("Recipient".Equals(type.Text))
                 {
                     t = 'R';
                 }
@@ -57,13 +58,13 @@ namespace BloodBank
                 string query = "INSERT INTO USER(PH_NO,NAME,B_GRP,EMAIL,LOCATION,CITY,PASSWORD,TYPE_OF_USER) VALUES(@PhNo,@NAME,@B_GRP,@EMAIL,@LOCATION,@CITY,@PASSWORD,@TYPE_OF_USER)";
                 SQLiteCommand cmd = new SQLiteCommand(query, d.con);
                 cmd.Parameters.AddWithValue("@PhNo", ph_no.Text);
-                cmd.Parameters.AddWithValue("@NAME", name.Text);
+                cmd.Parameters.AddWithValue("@NAME", name.Text);                
                 cmd.Parameters.AddWithValue("@B_GRP", b_group.Text);
                 cmd.Parameters.AddWithValue("@EMAIL", email.Text);
                 cmd.Parameters.AddWithValue("@LOCATION", location.Text);
                 cmd.Parameters.AddWithValue("@CITY", city.Text);
-                cmd.Parameters.AddWithValue("@PASSWORD", password.Text);
-                cmd.Parameters.AddWithValue("@TYPE_OF_USER", t.ToString());
+                cmd.Parameters.AddWithValue("@PASSWORD", password.Password);
+                cmd.Parameters.AddWithValue("@TYPE_OF_USER", t);
                 try
                 {
                     cmd.ExecuteNonQuery();
@@ -76,7 +77,7 @@ namespace BloodBank
                 d.closeConnection();
                 if (flag)
                 {
-                    MessageBox.Show(a + " added successfully");
+                    MessageBox.Show(type.Text + " added successfully");
                 }
             }
         }
