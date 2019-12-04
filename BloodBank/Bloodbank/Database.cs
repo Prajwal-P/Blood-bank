@@ -10,12 +10,13 @@ namespace BloodBank
 {
     public class Database
     {
-        public SQLiteConnection con = new SQLiteConnection("Data Source=../../BloodBankDB.sqlite3;Version=3;");
+        public SQLiteConnection con;
         public Database()
         {
             if (!File.Exists("../../BloodBankDB.sqlite3"))
             {
                 SQLiteConnection.CreateFile("../../BloodBankDB.sqlite3");
+                con = new SQLiteConnection("Data Source=../../BloodBankDB.sqlite3;Version=3;");
                 con.Open();
                 string query = "CREATE TABLE MED_INST (MI_ID INTEGER PRIMARY KEY AUTOINCREMENT,	NAME CHAR(20) NOT NULL UNIQUE, PHONE NUMBER(10) NOT NULL, LOCATION CHAR(30) NOT NULL, CITY CHAR(30) NOT NULL, WEBSITE CHAR(30), EMAIL CHAR(20) NOT NULL, PASSWORD CHAR(50) NOT NULL, TYPE_OF_MI CHAR(1));";
                 SQLiteCommand cmd = new SQLiteCommand(query, con);
