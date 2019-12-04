@@ -22,6 +22,17 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="18" Background="#F2F3F4" BorderThickness="1" BorderBrush="#78909C" Padding="0,0,0,0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Height="30" Width="1500" Background="#448AFF" MouseDown="Grid_MouseDown">
@@ -31,10 +42,7 @@
         <Border BorderThickness="1" BorderBrush="Black" CornerRadius="10" Width="1000" Height="700" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0" Width="1000" Height="700">
                 <Label Content="REGISTER" Width="150" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Margin="0,30,0,0" FontFamily="Roboto" FontSize="30" FontWeight="Bold" Foreground="#FF008000"/>
-                <Grid Width="100" Height="36" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,25,0">
-                    <Label Content="←" Width="50" Height="46" HorizontalAlignment="Left" VerticalContentAlignment="Top" Padding="0" Margin="0,0,0,0" FontFamily="Roboto" FontSize="30" FontWeight="Bold" Foreground="#78909C"/>
-                    <Label Content="Back" Width="60" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="18,4,0,0" FontFamily="Roboto" FontSize="20" FontWeight="Bold" Foreground="#78909C" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
-                </Grid>
+                <Button Style="{StaticResource RoundedButtonStyle}" Width="80" Height="36" VerticalAlignment="Top" HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,25,25,0" FontFamily="Roboto" FontSize="16" FontWeight="Bold" Foreground="#78909C" Content="Back" Cursor="Hand" Click="Button_Click"/>
                 <Grid Height="24" Margin="70,83,659,593">
                     <Viewbox Height="24" HorizontalAlignment="Left">
                         <RadioButton GroupName="type" Click="userClick">User</RadioButton>

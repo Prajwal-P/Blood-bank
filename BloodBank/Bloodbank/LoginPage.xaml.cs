@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,17 +29,83 @@ namespace BloodBank
         Database db = new Database();
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(username.Text.Equals("admin") && password.Password.Equals("admin"))
+            if(username.Text.Equals("Email") || password.Password.Equals(""))
             {
                 inavlidLogin.Visibility = Visibility.Hidden;
-                User user = new User();
-                this.Hide();
-                user.Show();
+                notFound.Visibility = Visibility.Hidden;
+                empty.Visibility = Visibility.Visible;
             }
             else
             {
-                inavlidLogin.Visibility = Visibility.Visible;
+                Database d = new Database();
+                d.openConnection();
+                string query = "SELECT EMAIL,PASSWORD FROM USER WHERE EMAIL='" + username.Text + "';";
+                SQLiteCommand cmd = new SQLiteCommand(query, d.con);
+                SQLiteDataReader result = cmd.ExecuteReader();
+                if (result.HasRows)
+                {
+                    if (result.Read())
+                    {
+                        if (password.Password.Equals(result["PASSWORD"]))
+                        {
+                            inavlidLogin.Visibility = Visibility.Hidden;
+                            empty.Visibility = Visibility.Hidden;
+                            notFound.Visibility = Visibility.Hidden;
+                            d.closeConnection();
+                            User user = new User();
+                            this.Hide();
+                            user.Show();
+                        }
+                        else
+                        {
+                            empty.Visibility = Visibility.Hidden;
+                            notFound.Visibility = Visibility.Hidden;
+                            inavlidLogin.Visibility = Visibility.Visible;
+                        }
+                    }
+                }
+                else
+                {
+                    query = "SELECT EMAIL,PASSWORD FROM MED_INST WHERE EMAIL='" + username.Text + "';";
+                    cmd = new SQLiteCommand(query, d.con);
+                    result = cmd.ExecuteReader();
+                    if (result.HasRows)
+                    {
+                        if (result.Read())
+                        {
+                            if (password.Password.Equals(result["PASSWORD"]))
+                            {
+                                inavlidLogin.Visibility = Visibility.Hidden;
+                                empty.Visibility = Visibility.Hidden;
+                                notFound.Visibility = Visibility.Hidden;
+                                d.closeConnection();
+                                HosDashboard hos = new HosDashboard();
+                                this.Hide();
+                                hos.Show();
+                            }
+                            else
+                            {
+                                empty.Visibility = Visibility.Hidden;
+                                notFound.Visibility = Visibility.Hidden;
+                                inavlidLogin.Visibility = Visibility.Visible;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        inavlidLogin.Visibility = Visibility.Hidden;
+                        empty.Visibility = Visibility.Hidden;
+                        notFound.Visibility = Visibility.Visible;
+                    }
+                }
             }
+            //if(username.Text.Equals("admin") && password.Password.Equals("admin"))
+            //{
+            //    inavlidLogin.Visibility = Visibility.Hidden;
+            //    User user = new User();
+            //    this.Hide();
+            //    user.Show();
+            //}
         }
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
@@ -62,9 +129,9 @@ namespace BloodBank
             this.Hide();
             signup.Show();
         }
-        /* private void username_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        private void username_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            if(username.Text.Equals("Phone Number"))
+            if(username.Text.Equals("Email"))
             {
                 username.Clear();
                 username.Foreground = new SolidColorBrush(Colors.Black);
@@ -76,8 +143,8 @@ namespace BloodBank
             if (username.Text.Equals(""))
             {
                 username.Foreground = new SolidColorBrush(Colors.LightGray);
-                username.Text = "Phone Number";
+                username.Text = "Email";
             }
-        } */
+        }
     }
 }

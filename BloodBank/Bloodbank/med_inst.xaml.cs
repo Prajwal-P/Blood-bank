@@ -28,26 +28,24 @@ namespace BloodBank
 
         private void submit_Click(object sender, RoutedEventArgs e)
         {
-            if(name.Text.Equals("") || email.Text.Equals("") || ph_no.Text.Equals("") || website.Text.Equals("") || location.Text.Equals("") || city.Text.Equals("") || password.Text.Equals("") || confirm_password.Text.Equals(""))
+            if(name.Text.Equals("") || email.Text.Equals("") || ph_no.Text.Equals("") || website.Text.Equals("") || location.Text.Equals("") || city.Text.Equals("") || password.Password.Equals("") || confirm_password.Password.Equals(""))
             {
                 passError.Visibility = Visibility.Hidden;
                 empty.Visibility = Visibility.Visible;
             }
-            else if (!password.Text.Equals(confirm_password.Text))
+            else if (!password.Password.Equals(confirm_password.Password))
             {
                 empty.Visibility = Visibility.Hidden;
                 passError.Visibility = Visibility.Visible;
             }
             else
             {
-                char t = 'H';
-                string[] q = type.SelectedItem.ToString().Split(':');
-                string a = q[1].Trim();
-                if ("Hospital".Equals(a))
+                char t = 'H';              
+                if ("Hospital".Equals(type.Text))
                 {
                     t = 'H';
                 }
-                else if("Blood Bank".Equals(a))
+                else if("Blood Bank".Equals(type.Text))
                 {
                     t = 'B';
                 }
@@ -62,8 +60,8 @@ namespace BloodBank
                 cmd.Parameters.AddWithValue("@CITY", city.Text);
                 cmd.Parameters.AddWithValue("@WEBSITE", website.Text);
                 cmd.Parameters.AddWithValue("@EMAIL", email.Text);
-                cmd.Parameters.AddWithValue("@PASSWORD", password.Text);
-                cmd.Parameters.AddWithValue("@TYPE_OF_MI", t.ToString());
+                cmd.Parameters.AddWithValue("@PASSWORD", password.Password);
+                cmd.Parameters.AddWithValue("@TYPE_OF_MI", t);
                 try
                 {
                     cmd.ExecuteNonQuery();
@@ -76,7 +74,7 @@ namespace BloodBank
                 d.closeConnection();
                 if(flag)
                 {
-                    MessageBox.Show(a + " added successfully");
+                    MessageBox.Show(type.Text + " added successfully");
                 }
             }
         }
