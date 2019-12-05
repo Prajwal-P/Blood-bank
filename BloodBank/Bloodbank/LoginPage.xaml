@@ -8,7 +8,7 @@
         Title="LoginPage" Height="800" Width="1500"
         WindowStartupLocation="CenterScreen" 
         ScrollViewer.VerticalScrollBarVisibility="Disabled" 
-        WindowStyle="None"
+        WindowStyle="None" ResizeMode="NoResize"
         Background="#F2F3F4"
         BorderThickness="0">
     <Window.Resources>
@@ -93,7 +93,7 @@
                 <Label x:Name="empty" Content="Enter both username and password" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,544,0,0" FontSize="20" Foreground="Red" Padding="0" Visibility="Hidden"/>
                 <Label x:Name="notFound" Content="User or Medical Institute not found" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,544,0,0" FontSize="20" Foreground="Red" Padding="0" Visibility="Hidden"/>
                 <Label Content="Don't have an account ?" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,594,0,0" FontSize="20" Foreground="#707070" Padding="0"/>
-                <Button x:Name="signUP" Content="SIGN UP NOW" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,628,0,0" FontSize="20" FontWeight="Bold" Foreground="#448AFF" Padding="0" BorderThickness="0" Background="#F2F3F4" Cursor="Hand" Click="signUP_Click"/>
+                <Button x:Name="signUP" Content="SIGN UP NOW" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,628,0,0" FontSize="20" FontWeight="Bold" Foreground="#448AFF" Height="40" Padding="5" BorderThickness="0" Background="#F2F3F4" Cursor="Hand" Click="signUP_Click"/>
             </Grid>
         </Border>
     </Grid>

@@ -25,17 +25,24 @@ namespace BloodBank
         {
             InitializeComponent();
         }
-
         private void submit_Click(object sender, RoutedEventArgs e)
         {
             if(name.Text.Equals("") || email.Text.Equals("") || ph_no.Text.Equals("") || website.Text.Equals("") || location.Text.Equals("") || city.Text.Equals("") || password.Password.Equals("") || confirm_password.Password.Equals(""))
             {
                 passError.Visibility = Visibility.Hidden;
+                phNoError.Visibility = Visibility.Hidden;
                 empty.Visibility = Visibility.Visible;
+            }
+            else if (!phNoCheck())
+            {
+                passError.Visibility = Visibility.Hidden;
+                empty.Visibility = Visibility.Hidden;
+                phNoError.Visibility = Visibility.Visible;
             }
             else if (!password.Password.Equals(confirm_password.Password))
             {
                 empty.Visibility = Visibility.Hidden;
+                phNoError.Visibility = Visibility.Hidden;
                 passError.Visibility = Visibility.Visible;
             }
             else
@@ -71,12 +78,31 @@ namespace BloodBank
                     MessageBox.Show(excep.Message);
                     flag = false;
                 }
-                d.closeConnection();
+                finally
+                {
+                    d.closeConnection();
+                }
+                passError.Visibility = Visibility.Hidden;
+                phNoError.Visibility = Visibility.Hidden;
+                empty.Visibility = Visibility.Hidden;
                 if(flag)
                 {
                     MessageBox.Show(type.Text + " added successfully");
                 }
             }
+        }
+        private bool phNoCheck()
+        {
+            bool flag = true;
+            foreach (char i in ph_no.Text)
+            {
+                if (i > '9' || i < '0')
+                    flag = false;
+            }
+            if (ph_no.Text.Length == 10 && flag)
+                return true;
+            else
+                return false;
         }
     }
 }

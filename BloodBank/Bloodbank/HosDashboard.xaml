@@ -29,7 +29,7 @@
             <Button HorizontalAlignment="Right" VerticalAlignment="Center" Width="16" Height="3" Background="White" BorderThickness="0" Margin="0,20,38,7" Click="Minimise_Button_Click" Cursor="Hand"></Button>
         </Grid>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="100">
-            <Label FontSize="20" FontWeight="Bold" Height="50" VerticalAlignment="Top" Margin="0,0,0,0" Grid.ColumnSpan="2">User dashboard is under development</Label>
+            <Label FontSize="20" FontWeight="Bold" Height="50" VerticalAlignment="Top">Med__Inst dashboard is under development</Label>
             <Button FontSize="20" FontWeight="Bold" Height="50" VerticalAlignment="Top" Margin="0,48,0,-48" Click="Button_Click">Log out</Button>
         </Grid>
     </Grid>
