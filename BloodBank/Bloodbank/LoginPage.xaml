@@ -12,6 +12,18 @@
         Background="#F2F3F4"
         BorderThickness="0">
     <Window.Resources>
+        <Style x:Key="TitleBarButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="0" Background="#448AFF" BorderThickness="0" Padding="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
         <ControlTemplate x:Key="TextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
             <Border Background="{TemplateBinding Background}" 
                 x:Name="Bd" BorderBrush="Black"
@@ -63,18 +75,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-        <Style x:Key="TitleBarButton" TargetType="{x:Type Button}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="0" Background="#448AFF" BorderThickness="0" Padding="0">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
     </Window.Resources>
     <Grid>
         <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Height="30" Width="1500" Background="#448AFF" MouseDown="Grid_MouseDown">
@@ -93,7 +93,7 @@
                 <Label x:Name="empty" Content="Enter both username and password" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,544,0,0" FontSize="20" Foreground="Red" Padding="0" Visibility="Hidden"/>
                 <Label x:Name="notFound" Content="User or Medical Institute not found" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,544,0,0" FontSize="20" Foreground="Red" Padding="0" Visibility="Hidden"/>
                 <Label Content="Don't have an account ?" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,594,0,0" FontSize="20" Foreground="#707070" Padding="0"/>
-                <Button x:Name="signUP" Content="SIGN UP NOW" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,628,0,0" FontSize="20" FontWeight="Bold" Foreground="#448AFF" Height="40" Padding="5" BorderThickness="0" Background="#F2F3F4" Cursor="Hand" Click="signUP_Click"/>
+                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" x:Name="signUP" Content="SIGN UP NOW" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,628,0,0" FontSize="20" FontWeight="Bold" Foreground="#448AFF" Height="45" Padding="5" Width="200" BorderThickness="0" Background="#F2F3F4" Cursor="Hand" Click="signUP_Click"/>
             </Grid>
         </Border>
     </Grid>
