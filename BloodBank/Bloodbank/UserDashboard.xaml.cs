@@ -61,12 +61,14 @@ namespace BloodBank
         {
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
-                case "ItemHome": userDashboard.Content = new UserDashboardView();
-                                 break;
-                case "ItemCreate": userDashboard.Content = new UserSettings();
-                                   break;
+                case "home": userDashboard.Content = new UserDashboardView();
+                    break;
+                case "settings": userDashboard.Content = new UserSettings();
+                    break;
+                case "orders": userDashboard.Content = new UserOrders();
+                    break;
                 default: userDashboard.Content = new UserDashboardView();
-                         break;
+                    break;
             }
         }
     }

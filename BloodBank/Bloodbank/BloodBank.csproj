@@ -107,6 +107,9 @@
     <Compile Include="UserDashboardView.xaml.cs">
       <DependentUpon>UserDashboardView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserOrders.xaml.cs">
+      <DependentUpon>UserOrders.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserSettings.xaml.cs">
       <DependentUpon>UserSettings.xaml</DependentUpon>
     </Compile>
@@ -143,6 +146,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserDashboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserOrders.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

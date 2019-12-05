@@ -103,13 +103,19 @@
                         <Image Height="80" VerticalAlignment="Bottom"/>
                     </Grid>
                     <ListView x:Name="ListViewMenu" Foreground="#FF5C99D6" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListViewMenu_SelectionChanged">
-                        <ListViewItem x:Name="ItemHome" Height="60">
+                        <ListViewItem x:Name="home" Height="60">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="ViewDashboard" Height="25" Width="25" Margin="10"/>
                                 <TextBlock Text="Home" VerticalAlignment="Center" Margin="20 10"/>
                             </StackPanel>
                         </ListViewItem>
-                        <ListViewItem x:Name="ItemCreate" Height="60">
+                        <ListViewItem x:Name="orders" Height="60">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="BloodOutline" Height="25" Width="25" Margin="10"/>
+                                <TextBlock Text="Orders" VerticalAlignment="Center" Margin="20 10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem x:Name="settings" Height="60">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="SettingsOutline" Height="25" Width="25" Margin="10"/>
                                 <TextBlock Text="Settings" VerticalAlignment="Center" Margin="20 10"/>
