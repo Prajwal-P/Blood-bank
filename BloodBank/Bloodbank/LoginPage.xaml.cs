@@ -39,7 +39,7 @@ namespace BloodBank
             {
                 Database d = new Database();
                 d.openConnection();
-                string query = "SELECT EMAIL,PASSWORD FROM USER WHERE EMAIL='" + username.Text + "';";
+                string query = "SELECT EMAIL,PASSWORD,NAME FROM USER WHERE EMAIL='" + username.Text + "';";
                 SQLiteCommand cmd = new SQLiteCommand(query, d.con);
                 SQLiteDataReader result = cmd.ExecuteReader();
                 if (result.HasRows)
@@ -51,8 +51,7 @@ namespace BloodBank
                             inavlidLogin.Visibility = Visibility.Hidden;
                             empty.Visibility = Visibility.Hidden;
                             notFound.Visibility = Visibility.Hidden;
-                            d.closeConnection();
-                            User user = new User();
+                            UserDashboard user = new UserDashboard(result["NAME"].ToString());
                             this.Hide();
                             user.Show();
                         }
@@ -66,7 +65,7 @@ namespace BloodBank
                 }
                 else
                 {
-                    query = "SELECT EMAIL,PASSWORD FROM MED_INST WHERE EMAIL='" + username.Text + "';";
+                    query = "SELECT EMAIL,PASSWORD,NAME FROM MED_INST WHERE EMAIL='" + username.Text + "';";
                     cmd = new SQLiteCommand(query, d.con);
                     result = cmd.ExecuteReader();
                     if (result.HasRows)
@@ -78,8 +77,7 @@ namespace BloodBank
                                 inavlidLogin.Visibility = Visibility.Hidden;
                                 empty.Visibility = Visibility.Hidden;
                                 notFound.Visibility = Visibility.Hidden;
-                                d.closeConnection();
-                                HosDashboard hos = new HosDashboard();
+                                HosDashboard hos = new HosDashboard(result["NAME"].ToString());
                                 this.Hide();
                                 hos.Show();
                             }
@@ -98,6 +96,7 @@ namespace BloodBank
                         notFound.Visibility = Visibility.Visible;
                     }
                 }
+                d.closeConnection();
             }
             //if(username.Text.Equals("admin") && password.Password.Equals("admin"))
             //{

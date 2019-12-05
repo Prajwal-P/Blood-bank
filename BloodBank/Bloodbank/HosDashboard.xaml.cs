@@ -19,10 +19,14 @@ namespace BloodBank
     /// </summary>
     public partial class HosDashboard : Window
     {
-        public HosDashboard()
+        private string hosName;
+
+        public HosDashboard(string name)
         {
             InitializeComponent();
+            this.hosName = name;
         }
+
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();

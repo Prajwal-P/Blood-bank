@@ -15,13 +15,16 @@ using System.Windows.Shapes;
 namespace BloodBank
 {
     /// <summary>
-    /// Interaction logic for User.xaml
+    /// Interaction logic for UserDashboard.xaml
     /// </summary>
-    public partial class User : Window
+    public partial class UserDashboard : Window
     {
-        public User()
+        string username;
+        public UserDashboard(string un)
         {
             InitializeComponent();
+            username = un;
+            name.Content = username;
         }
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
