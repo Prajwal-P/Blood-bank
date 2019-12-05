@@ -50,10 +50,5 @@ namespace BloodBank
                 con.Close();
             }
         }
-        public static SQLiteConnection connecton()
-        {
-            SQLiteConnection c = new SQLiteConnection("Data Source=../../BloodBankDB.sqlite3;Version=3;"); 
-            return c;
-        }
     }
 }

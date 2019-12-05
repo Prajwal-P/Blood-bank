@@ -51,7 +51,7 @@
                         <RadioButton GroupName="type" Click="mIClick">Medical Institute</RadioButton>
                     </Viewbox>
                 </Grid>
-                <Frame x:Name="signup" NavigationUIVisibility="Hidden" Width="1000" Height="580" VerticalAlignment="Bottom" Margin="-1,0,1,0"></Frame>
+                <Frame x:Name="signup" NavigationUIVisibility="Hidden" Width="1000" Height="580" VerticalAlignment="Bottom"></Frame>
             </Grid>
         </Border>
     </Grid>

@@ -19,11 +19,12 @@ namespace BloodBank
     /// </summary>
     public partial class UserDashboard : Window
     {
-        string username;
-        public UserDashboard(string un)
+        string username, id;
+        public UserDashboard(string id,string un)
         {
             InitializeComponent();
             username = un;
+            this.id = id;
             name.Content = username;
         }
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
@@ -45,6 +46,28 @@ namespace BloodBank
             LoginPage login = new LoginPage();
             this.Hide();
             login.Show();
+        }
+        private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonCloseMenu.Visibility = Visibility.Visible;
+            ButtonOpenMenu.Visibility = Visibility.Collapsed;
+        }
+        private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonCloseMenu.Visibility = Visibility.Collapsed;
+            ButtonOpenMenu.Visibility = Visibility.Visible;
+        }
+        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
+            {
+                case "ItemHome": userDashboard.Content = new UserDashboardView();
+                                 break;
+                case "ItemCreate": userDashboard.Content = new UserSettings();
+                                   break;
+                default: userDashboard.Content = new UserDashboardView();
+                         break;
+            }
         }
     }
 }

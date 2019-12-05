@@ -19,11 +19,12 @@ namespace BloodBank
     /// </summary>
     public partial class HosDashboard : Window
     {
-        private string hosName;
+        private string hosName, id;
 
-        public HosDashboard(string name)
+        public HosDashboard(string id,string name)
         {
             InitializeComponent();
+            this.id = id;
             this.hosName = name;
         }
 
