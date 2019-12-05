@@ -25,7 +25,6 @@ namespace BloodBank
             InitializeComponent();
             username = un;
             this.id = id;
-            name.Content = username;
         }
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -47,27 +46,37 @@ namespace BloodBank
             this.Hide();
             login.Show();
         }
-        private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
-        {
-            ButtonCloseMenu.Visibility = Visibility.Visible;
-            ButtonOpenMenu.Visibility = Visibility.Collapsed;
-        }
         private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
         {
             ButtonCloseMenu.Visibility = Visibility.Collapsed;
             ButtonOpenMenu.Visibility = Visibility.Visible;
+            img.Visibility = Visibility.Collapsed;
+        }
+        private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonCloseMenu.Visibility = Visibility.Visible;
+            ButtonOpenMenu.Visibility = Visibility.Collapsed;
+            img.Visibility = Visibility.Visible;
         }
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
-                case "home": userDashboard.Content = new UserDashboardView();
+                case "home":
+                    userDashboard.Content = new UserDashboardView(id, username);
                     break;
-                case "settings": userDashboard.Content = new UserSettings();
+                case "settings": 
+                    userDashboard.Content = new UserSettings();
                     break;
-                case "orders": userDashboard.Content = new UserOrders();
+                case "orders": 
+                    userDashboard.Content = new UserOrders();
                     break;
-                default: userDashboard.Content = new UserDashboardView();
+                case "logout":
+                    LoginPage login = new LoginPage();
+                    this.Hide();
+                    login.Show();
+                    break;
+                default: userDashboard.Content = new UserDashboardView(id, username);
                     break;
             }
         }
