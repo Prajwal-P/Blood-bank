@@ -15,13 +15,17 @@ using System.Windows.Shapes;
 namespace BloodBank
 {
     /// <summary>
-    /// Interaction logic for User.xaml
+    /// Interaction logic for UserDashboard.xaml
     /// </summary>
-    public partial class User : Window
+    public partial class UserDashboard : Window
     {
-        public User()
+        string username, id;
+        public UserDashboard(string id,string un)
         {
             InitializeComponent();
+            username = un;
+            this.id = id;
+            name.Content = username;
         }
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -42,6 +46,30 @@ namespace BloodBank
             LoginPage login = new LoginPage();
             this.Hide();
             login.Show();
+        }
+        private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonCloseMenu.Visibility = Visibility.Visible;
+            ButtonOpenMenu.Visibility = Visibility.Collapsed;
+        }
+        private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonCloseMenu.Visibility = Visibility.Collapsed;
+            ButtonOpenMenu.Visibility = Visibility.Visible;
+        }
+        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
+            {
+                case "home": userDashboard.Content = new UserDashboardView();
+                    break;
+                case "settings": userDashboard.Content = new UserSettings();
+                    break;
+                case "orders": userDashboard.Content = new UserOrders();
+                    break;
+                default: userDashboard.Content = new UserDashboardView();
+                    break;
+            }
         }
     }
 }
