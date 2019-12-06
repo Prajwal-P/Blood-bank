@@ -86,7 +86,7 @@ namespace BloodBank
                     userDashboard.Content = new UserBloodRequestPage(id,hos_id);
                     break;
                 case "ReqView":
-                    userDashboard.Content = new UserBloodRequestPage(id, hos_id);
+                    userDashboard.Content = new UserViewRequests(id);
                     break;
                 case "orders": 
                     userDashboard.Content = new UserOrders(id);
