@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,12 +20,26 @@ namespace BloodBank
     /// </summary>
     public partial class UserDashboard : Window
     {
-        string username, id;
-        public UserDashboard(string id,string un)
+        string id, username, bgrp, mail, loc, city, typ, hos_id;
+        public UserDashboard(
+            string id,
+            string un,
+            string bgrp,
+            string mail,
+            string loc,
+            string city,
+            string typ,
+            string hos_id)
         {
             InitializeComponent();
-            username = un;
             this.id = id;
+            username = un;
+            this.bgrp = bgrp;
+            this.mail = mail;
+            this.loc = loc;
+            this.city = city;
+            this.typ = typ;
+            this.hos_id = hos_id;
         }
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -39,13 +54,7 @@ namespace BloodBank
         private void Minimise_Button_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            LoginPage login = new LoginPage();
-            this.Hide();
-            login.Show();
-        }
+        }        
         private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
         {
             ButtonCloseMenu.Visibility = Visibility.Collapsed;
@@ -60,16 +69,16 @@ namespace BloodBank
         }
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
+            switch(((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
                 case "home":
-                    userDashboard.Content = new UserDashboardView(id, username);
+                    userDashboard.Content = new UserDashboardView(id,username,mail,bgrp,loc,city,typ);
                     break;
                 case "blood":
-                    userDashboard.Content = new UserBloodRequestPage(id);
+                    userDashboard.Content = new UserBloodRequestPage(id,hos_id);
                     break;
                 case "orders": 
-                    userDashboard.Content = new UserOrders();
+                    userDashboard.Content = new UserOrders(id);
                     break;
                 case "settings":
                     userDashboard.Content = new UserSettings();
@@ -79,7 +88,7 @@ namespace BloodBank
                     this.Hide();
                     login.Show();
                     break;
-                default: userDashboard.Content = new UserDashboardView(id, username);
+                default: userDashboard.Content = new UserDashboardView(id, username, mail, bgrp, loc, city, typ);
                     break;
             }
         }

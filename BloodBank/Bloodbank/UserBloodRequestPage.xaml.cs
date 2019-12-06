@@ -21,11 +21,12 @@ namespace BloodBank
     /// </summary>
     public partial class UserBloodRequestPage : Page
     {
-        string id = null, d_id = null;
-        public UserBloodRequestPage(string id)
+        string id, d_id=null, hos_id;
+        public UserBloodRequestPage(string id, string hos_id)
         {
             InitializeComponent();
             this.id = id;
+            this.hos_id = hos_id;
             loadValues();
         }
         private void loadValues()
@@ -106,7 +107,7 @@ namespace BloodBank
                 cmd.Parameters.AddWithValue("@B_GRP", B_grp.Text);
                 cmd.Parameters.AddWithValue("@RECIP_ID",id);
                 cmd.Parameters.AddWithValue("@DONOR_ID",d_id);
-                cmd.Parameters.AddWithValue("@MI_ID","1");
+                cmd.Parameters.AddWithValue("@MI_ID",hos_id);
                 cmd.Parameters.AddWithValue("@REQ_DATE",System.DateTime.Now);
                 cmd.Parameters.AddWithValue("@QUANTITY","1");
                 cmd.ExecuteNonQuery();

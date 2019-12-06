@@ -39,7 +39,7 @@ namespace BloodBank
             {
                 Database d = new Database();
                 d.openConnection();
-                string query = "SELECT PH_NO,EMAIL,PASSWORD,NAME FROM USER WHERE EMAIL='" + username.Text + "';";
+                string query = "SELECT * FROM USER WHERE EMAIL='" + username.Text + "';";
                 SQLiteCommand cmd = new SQLiteCommand(query, d.con);
                 SQLiteDataReader result = cmd.ExecuteReader();
                 try
@@ -53,7 +53,15 @@ namespace BloodBank
                                 inavlidLogin.Visibility = Visibility.Hidden;
                                 empty.Visibility = Visibility.Hidden;
                                 notFound.Visibility = Visibility.Hidden;
-                                UserDashboard user = new UserDashboard(result["PH_NO"].ToString(), result["NAME"].ToString());
+                                UserDashboard user = new UserDashboard(
+                                    result["PH_NO"].ToString(),
+                                    result["NAME"].ToString(),
+                                    result["B_GRP"].ToString(),
+                                    result["EMAIL"].ToString(),
+                                    result["LOCATION"].ToString(),
+                                    result["CITY"].ToString(),
+                                    result["TYPE_OF_USER"].ToString(),
+                                    result["MI_ID"].ToString());
                                 this.Hide();
                                 user.Show();
                             }
