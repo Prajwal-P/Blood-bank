@@ -5,10 +5,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BloodBank"
       mc:Ignorable="d" 
-      d:DesignHeight="720" d:DesignWidth="1430"
+      d:DesignHeight="770" d:DesignWidth="1250"
       Title="UserOrders">
-
-    <Grid Background="Blue">
-        
+    <Grid Margin="50">
+        <Label Content="Previous transactions you had done" FontSize="25" FontWeight="Bold" Margin="0 20" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+        <DataGrid x:Name="Order_List" Height="565" Width="auto" HorizontalAlignment="Center" VerticalAlignment="Bottom" AutoGenerateColumns="True" BorderThickness="1" BorderBrush="Black" Visibility="Hidden" IsReadOnly="True"/>
+        <Border x:Name="NoData" Width="400" Height="50" CornerRadius="15" BorderThickness="1" BorderBrush="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Hidden">
+            <Label Content="No transactions made till date" FontSize="25" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Border>
     </Grid>
 </Page>
