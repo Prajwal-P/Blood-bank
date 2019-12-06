@@ -31,7 +31,7 @@ namespace BloodBank
             d.openConnection();
             try
             {
-                string query = "SELECT * FROM ORDERS WHERE RECIP_ID='" + id + "' OR DONOR_ID='" + id + "' AND DEL_DATE!='"+null+"';";
+                string query = "SELECT * FROM ORDERS WHERE RECIP_ID ='" + id + "' OR DONOR_ID ='" + id + "' AND DEL_DATE NOT NULL;";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(query, d.con);
                 DataTable dt = new DataTable("ORDERS");
                 da.Fill(dt);

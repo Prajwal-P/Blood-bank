@@ -40,6 +40,14 @@ namespace BloodBank
             this.city = city;
             this.typ = typ;
             this.hos_id = hos_id;
+            if (typ.Equals("68"))
+            {
+                ReqBlood.Visibility = Visibility.Collapsed;
+            }
+            else if(typ.Equals("82"))
+            {
+                ReqView.Visibility = Visibility.Collapsed;
+            }
         }
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -74,8 +82,11 @@ namespace BloodBank
                 case "home":
                     userDashboard.Content = new UserDashboardView(id,username,mail,bgrp,loc,city,typ);
                     break;
-                case "blood":
+                case "ReqBlood":
                     userDashboard.Content = new UserBloodRequestPage(id,hos_id);
+                    break;
+                case "ReqView":
+                    userDashboard.Content = new UserBloodRequestPage(id, hos_id);
                     break;
                 case "orders": 
                     userDashboard.Content = new UserOrders(id);
