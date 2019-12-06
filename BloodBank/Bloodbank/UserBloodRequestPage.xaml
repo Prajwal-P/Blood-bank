@@ -19,9 +19,9 @@
                 <ComboBox Name="DList" Style="{x:Null}" Width="350" Height="42" DropDownClosed="onComboBoxClosed" VerticalContentAlignment="Center" FontSize="18"/>
                 <Grid Width="350" Height="75" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0 20">
                     <Label FontSize="12" FontWeight="Bold" Foreground="Red" VerticalAlignment="Top">NOTE :-</Label>
-                    <TextBlock TextWrapping="WrapWithOverflow" VerticalAlignment="Bottom">
+                    <TextBlock TextWrapping="WrapWithOverflow" VerticalAlignment="Bottom" TextAlignment="Justify">
                         You can request for blood through this app.
-                        For additional we don't provide contact number
+                        For additional security we don't provide contact number
                         of donors. If u want to contact them personally
                         feel free to mail them.
                     </TextBlock>
