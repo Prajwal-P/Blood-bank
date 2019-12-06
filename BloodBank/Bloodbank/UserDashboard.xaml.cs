@@ -65,11 +65,14 @@ namespace BloodBank
                 case "home":
                     userDashboard.Content = new UserDashboardView(id, username);
                     break;
-                case "settings": 
-                    userDashboard.Content = new UserSettings();
+                case "blood":
+                    userDashboard.Content = new UserBloodRequestPage(id);
                     break;
                 case "orders": 
                     userDashboard.Content = new UserOrders();
+                    break;
+                case "settings":
+                    userDashboard.Content = new UserSettings();
                     break;
                 case "logout":
                     LoginPage login = new LoginPage();

@@ -7,8 +7,5 @@
       mc:Ignorable="d" 
       d:DesignHeight="770" d:DesignWidth="1250"
       Title="UserOrders">
-
-    <Grid Background="Blue">
-        <Border BorderThickness="20" BorderBrush="Yellow"></Border>
-    </Grid>
+    
 </Page>

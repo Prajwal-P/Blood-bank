@@ -92,6 +92,12 @@
                                 <TextBlock Text="Home" FontSize="20" VerticalAlignment="Center" Margin="20 10"/>
                             </StackPanel>
                         </ListViewItem>
+                        <ListViewItem x:Name="blood" Height="60" >
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Blood" Foreground="Red" Height="25" Width="25" Margin="10"/>
+                                <TextBlock Text="Request for blood" FontSize="20" VerticalAlignment="Center" Margin="20 10"/>
+                            </StackPanel>
+                        </ListViewItem>
                         <ListViewItem x:Name="orders" Height="60">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="CartOutline"  Foreground="Green" Height="25" Width="25" Margin="10"/>
@@ -106,7 +112,7 @@
                         </ListViewItem>
                         <ListViewItem x:Name="logout" Height="60">
                             <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="LogoutVariant" Foreground="Red" Height="25" Width="25" Margin="10"/>
+                                <materialDesign:PackIcon Kind="LogoutVariant" Foreground="Gray" Height="25" Width="25" Margin="10"/>
                                 <TextBlock Text="Log Out" FontSize="20" VerticalAlignment="Center" Margin="20 10"/>
                             </StackPanel>
                         </ListViewItem>

@@ -23,7 +23,7 @@
             <TextBox x:Name="email" Style="{x:Null}"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="30" Background="White" BorderThickness="1" Margin="323,67,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="16,0,0,0" FontSize="20"/>
             <TextBox x:Name="ph_no" Style="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="30" Background="White" BorderThickness="1" Margin="323,122,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="16,0,0,0" FontSize="20"/>
             <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="30" Margin="323,180,0,0">
-                <ComboBox Style="{StaticResource MaterialDesignComboBox}" Width="300" Height="30" FontSize="15" x:Name="b_group">
+                <ComboBox Style="{x:Null}" Width="300" Height="30" FontSize="15" x:Name="b_group">
                     <ComboBoxItem Content="A+" IsSelected="True"/>
                     <ComboBoxItem Content="B+"/>
                     <ComboBoxItem Content="O+"/>
@@ -35,7 +35,7 @@
                 </ComboBox>
             </Grid>
             <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="30"  Margin="323,235,0,0">
-                <ComboBox Style="{StaticResource MaterialDesignComboBox}" Height="30"  FontSize="15" Name="type">
+                <ComboBox Style="{x:Null}" Height="30"  FontSize="15" Name="type">
                     <ComboBoxItem Content="Donor"/>
                     <ComboBoxItem Content="Recipient" IsSelected="True"/>
                 </ComboBox>
