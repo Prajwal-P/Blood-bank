@@ -33,7 +33,7 @@ namespace BloodBank
             Database d = new Database();
             try
             {
-                string query = "SELECT PH_NO, NAME FROM USER WHERE TYPE_OF_USER='68';";
+                string query = "SELECT NAME FROM USER WHERE PH_NO IN (SELECT DISTINCT RECIP_ID FROM ORDERS WHERE DONOR_ID='"+id+"');";
                 d.openConnection();
                 SQLiteCommand cmd = new SQLiteCommand(query, d.con);
                 SQLiteDataReader dr = cmd.ExecuteReader();
@@ -48,6 +48,21 @@ namespace BloodBank
                 {
                     RList.Items.Add("No donors");
                 }
+                query = "SELECT NAME FROM MED_INST WHERE TYPE_OF_MI='66';";
+                d.openConnection();
+                cmd = new SQLiteCommand(query, d.con);
+                dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        BBList.Items.Add(dr.GetString(dr.GetOrdinal("NAME")));
+                    }
+                }
+                else
+                {
+                    BBList.Items.Add("No donors");
+                }
             }
             catch (Exception ex)
             {
@@ -58,26 +73,80 @@ namespace BloodBank
                 d.closeConnection();
             }
         }
-        private void onD_ComboBoxClosed(object sender, EventArgs e)
+        private void onR_ComboBoxClosed(object sender, EventArgs e)
         {
             BB_details.Visibility = Visibility.Hidden;
             R_details.Visibility = Visibility.Visible;
+            Database d = new Database();
+            string query = "SELECT PH_NO, NAME, B_GRP, EMAIL, LOCATION, CITY FROM USER WHERE NAME='" + RList.Text + "';";
+            try
+            {
+                d.openConnection();
+                SQLiteCommand cmd = new SQLiteCommand(query, d.con);
+                SQLiteDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    if (dr.Read())
+                    {
+                        Ph_no.Text = dr["PH_NO"].ToString();
+                        R_Name.Text = dr.GetString(dr.GetOrdinal("NAME"));
+                        R_Bgrp.Text = dr.GetString(dr.GetOrdinal("B_GRP"));
+                        R_Email.Text = dr.GetString(dr.GetOrdinal("EMAIL"));
+                        R_Loc.Text = dr.GetString(dr.GetOrdinal("LOCATION"));
+                        R_City.Text = dr.GetString(dr.GetOrdinal("CITY"));
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Some intennal error occured\nPlease select the donor again");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                d.closeConnection();
+            }
         }
 
         private void onBB_ComboBoxClosed(object sender, EventArgs e)
         {
             R_details.Visibility = Visibility.Hidden;
             BB_details.Visibility = Visibility.Visible;
-        }
-
-        private void DonateToD(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void DonateBB(object sender, RoutedEventArgs e)
-        {
-
+            Database d = new Database();
+            string query = "SELECT NAME, PHONE, WEBSITE, EMAIL, LOCATION, CITY FROM MED_INST WHERE NAME='" + BBList.Text + "'";
+            try
+            {
+                d.openConnection();
+                SQLiteCommand cmd = new SQLiteCommand(query, d.con);
+                SQLiteDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    if (dr.Read())
+                    {
+                        BB_Name.Text = dr["NAME"].ToString();
+                        BB_Ph.Text = dr["PHONE"].ToString();
+                        BB_Website.Text = dr.GetString(dr.GetOrdinal("WEBSITE"));
+                        BB_Email.Text = dr.GetString(dr.GetOrdinal("EMAIL"));
+                        BB_Loc.Text = dr.GetString(dr.GetOrdinal("LOCATION"));
+                        BB_City.Text = dr.GetString(dr.GetOrdinal("CITY"));
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Some intennal error occured\nPlease select the donor again");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                d.closeConnection();
+            }
         }
     }
 }
