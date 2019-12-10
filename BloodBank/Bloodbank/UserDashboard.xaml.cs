@@ -92,7 +92,7 @@ namespace BloodBank
                     userDashboard.Content = new UserOrders(id);
                     break;
                 case "settings":
-                    userDashboard.Content = new UserSettings();
+                    userDashboard.Content = new UserSettings(id);
                     break;
                 case "logout":
                     LoginPage login = new LoginPage();
