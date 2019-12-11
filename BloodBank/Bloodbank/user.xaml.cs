@@ -25,7 +25,7 @@ namespace BloodBank
         {
             InitializeComponent();
         }
-        private void submit_Click(object sender, RoutedEventArgs e)
+        private void next_Click(object sender, RoutedEventArgs e)
         {
             if (name.Text.Equals("") || email.Text.Equals("") || ph_no.Text.Equals("") || b_group.Text.Equals("") || location.Text.Equals("") || city.Text.Equals("") || password.Password.Equals("") || confirm_password.Password.Equals(""))
             {
@@ -47,17 +47,20 @@ namespace BloodBank
             }
             else
             {
-                char t = 'R';           
+                //char t = 'R';           
                 if ("Donor".Equals(type.Text))
                 {
-                    t = 'D';
+                    //t = 'D';
+                    signup.Visibility = Visibility.Hidden;
+                    DonorSignUp.Visibility = Visibility.Visible;
                 }
                 else if ("Recipient".Equals(type.Text))
                 {
-                    t = 'R';
+                    //t = 'R';
+                    signup.Visibility = Visibility.Hidden;
+                    RecipSignUp.Visibility = Visibility.Visible;
                 }
-                Database d = new Database();
-                bool flag = true;
+                /*Database d = new Database();
                 d.openConnection();
                 string query = "INSERT INTO USER(PH_NO,NAME,B_GRP,EMAIL,LOCATION,CITY,PASSWORD,TYPE_OF_USER) VALUES(@PhNo,@NAME,@B_GRP,@EMAIL,@LOCATION,@CITY,@PASSWORD,@TYPE_OF_USER)";
                 SQLiteCommand cmd = new SQLiteCommand(query, d.con);
@@ -76,19 +79,11 @@ namespace BloodBank
                 catch (Exception excep)
                 {
                     MessageBox.Show(excep.Message);
-                    flag = false;
                 }
                 finally
                 {
                     d.closeConnection();
-                }
-                passError.Visibility = Visibility.Hidden;
-                phNoError.Visibility = Visibility.Hidden;
-                empty.Visibility = Visibility.Hidden;
-                if (flag)
-                {
-                    MessageBox.Show(type.Text + " added successfully");
-                }
+                }*/
             }
         }
         public bool phNoCheck()
@@ -103,6 +98,16 @@ namespace BloodBank
                 return true;
             else
                 return false;
+        }
+
+        private void Dsubmit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Rsubmit_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

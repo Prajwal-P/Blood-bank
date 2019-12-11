@@ -23,6 +23,14 @@ namespace BloodBank
         {
             InitializeComponent();
         }
+
+        public Signup(char typ)
+        {
+            switch(typ)
+            {
+
+            }
+        }
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
