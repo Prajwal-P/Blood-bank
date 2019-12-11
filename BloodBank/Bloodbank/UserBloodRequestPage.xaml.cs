@@ -50,6 +50,7 @@ namespace BloodBank
                 {
                     Req_List.Items.Add("No donors");
                 }
+                Reciv_List.Items.Clear();
                 query = "SELECT U.NAME, O.OR_ID FROM USER U,ORDERS O WHERE DEL_DATE IS NULL AND O.DONOR_ID=U.PH_NO AND O.RECIP_ID='"+id+"';";
                 cmd = new SQLiteCommand(query, d.con);
                 dr = cmd.ExecuteReader();
@@ -121,9 +122,8 @@ namespace BloodBank
             try
             {
                 string[] str = Reciv_List.Text.Split('|');
-                //string D_name = str[0].Trim();
                 or_Id = str[0].Trim();
-                string query = "SELECT U.NAME, O.B_GRP, H.NAME, O.DONOR_ID FROM ORDERS O, MED_INST H, USER U WHERE O.OR_ID='"+or_Id+"' AND H.MI_ID=O.MI_ID AND O.DONOR_ID=U.PH_NO;";
+                string query = "SELECT U.NAME, O.B_GRP, H.NAME, O.DONOR_ID FROM ORDERS O, MED_INST H, USER U WHERE O.OR_ID='" + or_Id + "' AND H.MI_ID=O.MI_ID AND O.DONOR_ID=U.PH_NO;";
                 d.openConnection();
                 SQLiteCommand cmd = new SQLiteCommand(query, d.con);
                 SQLiteDataReader dr = cmd.ExecuteReader();
@@ -163,11 +163,11 @@ namespace BloodBank
                 d.openConnection();
                 SQLiteCommand cmd = new SQLiteCommand(query, d.con);
                 cmd.Parameters.AddWithValue("@B_GRP", B_grp.Text);
-                cmd.Parameters.AddWithValue("@RECIP_ID",id);
-                cmd.Parameters.AddWithValue("@DONOR_ID",d_id);
-                cmd.Parameters.AddWithValue("@MI_ID",hos_id);
+                cmd.Parameters.AddWithValue("@RECIP_ID", id);
+                cmd.Parameters.AddWithValue("@DONOR_ID", d_id);
+                cmd.Parameters.AddWithValue("@MI_ID", hos_id);
                 cmd.Parameters.AddWithValue("@REQ_DATE", System.DateTime.Now);
-                cmd.Parameters.AddWithValue("@QUANTITY","1");
+                cmd.Parameters.AddWithValue("@QUANTITY", "1");
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -194,8 +194,6 @@ namespace BloodBank
             {
                 string[] a = Reciv_Date.Text.Split('-');
                 string s = a[2] + "-" + a[1] + "-" + a[0] + " 00:00:00.0000000";
-                DateTime dt = Convert.ToDateTime(s);
-                MessageBox.Show(Reciv_Date.Text + "\n" + Reciv_Date.SelectedDate + "\n" + Reciv_Date + "\n" + s + "\n");
                 string query = "UPDATE ORDERS SET DEL_DATE=@DEL_DATE WHERE OR_ID='" + or_Id + "';";
                 d.openConnection();
                 SQLiteCommand cmd = new SQLiteCommand(query, d.con);

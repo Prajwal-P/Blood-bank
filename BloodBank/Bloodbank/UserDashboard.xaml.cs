@@ -48,6 +48,7 @@ namespace BloodBank
             {
                 ReqView.Visibility = Visibility.Collapsed;
             }
+            userDashboard.Content = new UserDashboardView(id, username, mail, bgrp, loc, city, typ);
         }
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -92,7 +93,7 @@ namespace BloodBank
                     userDashboard.Content = new UserOrders(id);
                     break;
                 case "settings":
-                    userDashboard.Content = new UserSettings();
+                    userDashboard.Content = new UserSettings(id);
                     break;
                 case "logout":
                     LoginPage login = new LoginPage();
