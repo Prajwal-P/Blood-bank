@@ -48,6 +48,7 @@ namespace BloodBank
             {
                 ReqView.Visibility = Visibility.Collapsed;
             }
+            userDashboard.Content = new UserDashboardView(id, username, mail, bgrp, loc, city, typ);
         }
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {

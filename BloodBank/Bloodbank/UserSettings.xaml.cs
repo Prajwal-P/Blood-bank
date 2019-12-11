@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +21,50 @@ namespace BloodBank
     /// </summary>
     public partial class UserSettings : Page
     {
-        string id;
+        string id, _ph_No, _name, _b_grp, _email, _loc, _city, _typ, _password, query;
         public UserSettings(string id)
         {
             InitializeComponent();
             this.id = id;
+            Database d = new Database();
+            try
+            {
+                query = "SELECT * FROM USER WHERE PH_NO='" + id + "';";
+                d.openConnection();
+                SQLiteCommand cmd = new SQLiteCommand(query, d.con);
+                SQLiteDataReader r = cmd.ExecuteReader();
+                if (r.Read() && r.HasRows)
+                {
+                    ph_No.Content = _ph_No = r["PH_NO"].ToString();
+                    name.Content = _name = r["NAME"].ToString();
+                    b_Grp.Content = _b_grp = r["B_GRP"].ToString();
+                    email.Content = _email = r["EMAIL"].ToString();
+                    loc.Content = _loc = r["LOCATION"].ToString();
+                    city.Content = _city = r["CITY"].ToString();
+                    _typ = r["TYPE_OF_USER"].ToString();
+                    _password= r["PASSWORD"].ToString();
+                    if(_typ.Equals("68"))
+                    {
+                        typ.Content = _typ = "Donor";
+                    }
+                    else
+                    {
+                        typ.Content = _typ = "Recipient";
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No details found for your login");
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                d.closeConnection();
+            }
         }
 
         private void changeLocation(object sender, RoutedEventArgs e)
@@ -67,7 +107,28 @@ namespace BloodBank
             else
             {
                 emptyLoc.Visibility = Visibility.Hidden;
-                //TODO
+                bool flag = true;
+                Database d = new Database();
+                try
+                {
+                    query = "UPDATE USER SET LOCATION='" + new_Loc.Text + "' WHERE PH_NO='" + id + "';";
+                    d.openConnection();
+                    SQLiteCommand cmd = new SQLiteCommand(query,d.con);
+                    cmd.ExecuteNonQuery();
+                }
+                catch(Exception ex)
+                {
+                    flag = false;
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    d.closeConnection();
+                }
+                if(flag)
+                {
+                    MessageBox.Show("Location updated successfully");
+                }
             }
         }
 
@@ -111,7 +172,28 @@ namespace BloodBank
             else
             {
                 emptyCity.Visibility = Visibility.Hidden;
-                //TODO
+                bool flag = true;
+                Database d = new Database();
+                try
+                {
+                    query = "UPDATE USER SET CITY='" + new_City.Text + "' WHERE PH_NO='" + id + "';";
+                    d.openConnection();
+                    SQLiteCommand cmd = new SQLiteCommand(query, d.con);
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    flag = false;
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    d.closeConnection();
+                }
+                if (flag)
+                {
+                    MessageBox.Show("City updated successfully");
+                }
             }
         }
 
@@ -142,9 +224,39 @@ namespace BloodBank
                 emptyPassword.Visibility = Visibility.Hidden;
                 PasswordNotMatching.Visibility = Visibility.Visible;
             }
+            else if(!old_Pass.Password.Equals(_password))
+            {
+                emptyPassword.Visibility = Visibility.Hidden;
+                PasswordNotMatching.Visibility = Visibility.Hidden;
+                invalidOldPassword.Visibility = Visibility.Visible;
+            }
             else
             {
-
+                emptyPassword.Visibility = Visibility.Hidden;
+                PasswordNotMatching.Visibility = Visibility.Hidden;
+                invalidOldPassword.Visibility = Visibility.Hidden;
+                bool flag = true;
+                Database d = new Database();
+                try
+                {
+                    query = "UPDATE USER SET PASSWORD='" + new_Pass.Password + "' WHERE PH_NO='" + id + "';";
+                    d.openConnection();
+                    SQLiteCommand cmd = new SQLiteCommand(query, d.con);
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    flag = false;
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    d.closeConnection();
+                }
+                if (flag)
+                {
+                    MessageBox.Show("Password updated successfully");
+                }
             }
         }
     }
