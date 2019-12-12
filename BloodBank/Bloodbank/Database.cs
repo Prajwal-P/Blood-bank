@@ -13,10 +13,10 @@ namespace BloodBank
         public SQLiteConnection con;
         public Database()
         {
-            if (!File.Exists("../../../BloodBankDB.sqlite3"))
+            if (!File.Exists("BloodBankDB.sqlite3"))
             {
-                SQLiteConnection.CreateFile("../../../BloodBankDB.sqlite3");
-                con = new SQLiteConnection("Data Source=../../../BloodBankDB.sqlite3;Version=3;");
+                SQLiteConnection.CreateFile("BloodBankDB.sqlite3");
+                con = new SQLiteConnection("Data Source=BloodBankDB.sqlite3;Version=3;");
                 con.Open();
                 string query = "CREATE TABLE MED_INST (MI_ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,	NAME CHAR(20) NOT NULL UNIQUE, PHONE NUMBER(10) NOT NULL UNIQUE, LOCATION CHAR(30) NOT NULL, CITY CHAR(30) NOT NULL, WEBSITE CHAR(30) NOT NULL, EMAIL CHAR(20) NOT NULL, PASSWORD CHAR(50) NOT NULL, TYPE_OF_MI CHAR(1));";
                 SQLiteCommand cmd = new SQLiteCommand(query, con);
@@ -36,7 +36,7 @@ namespace BloodBank
             }
             else
             {
-                con = new SQLiteConnection("Data Source=../../../BloodBankDB.sqlite3;Version=3;");
+                con = new SQLiteConnection("Data Source=BloodBankDB.sqlite3;Version=3;");
             }
         }
         public void openConnection()
