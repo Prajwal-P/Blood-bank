@@ -4,12 +4,13 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BloodBank"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="580" d:DesignWidth="1000"
       Title="med_inst">
 
     <Grid>
-        <Grid Width="650" Height="580">
+        <Grid x:Name="MIsignup" Width="650" Height="580" Visibility="Visible">
             <Label Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,15,0,0" FontSize="20" FontWeight="Bold" Foreground="#707070" Padding="0"/>
             <Label Content="Email" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,70,0,0" FontSize="20" FontWeight="Bold" Foreground="#707070" Padding="0"/>
             <Label Content="Phone Number" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,125,0,0" FontSize="20" FontWeight="Bold" Foreground="#707070" Padding="0"/>
@@ -36,7 +37,63 @@
             <Label Name="passError" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,492,0,0" FontSize="16" Foreground="Red" FontWeight="Bold" Visibility="Hidden">Passwords does not match</Label>
             <Label Name="empty" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,492,0,0" FontSize="16" Foreground="Red" FontWeight="Bold" Visibility="Hidden">All fileds are mandatory to submit</Label>
             <Label Name="phNoError" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,492,0,0" FontSize="16" Foreground="Red" FontWeight="Bold" Visibility="Hidden">Enter valid phone number</Label>
-            <Button x:Name="submit" Width="130" Height="32" Content="SUBMIT" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,530,0,0" FontSize="20" FontWeight="Bold" Foreground="#FF008000" Padding="0" BorderThickness="0" Background="#F2F3F4" Cursor="Hand" Click="submit_Click"/>
+            <Button x:Name="next" Width="130" Height="32" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 530 2 0" FontSize="20" FontWeight="Bold" Foreground="#5a2985" Padding="0" BorderThickness="0" Background="#F2F3F4" Cursor="Hand" Click="next_Click">
+                <Grid HorizontalAlignment="Stretch" Width="130">
+                    <materialDesign:PackIcon Kind="PageNextOutline" Height="32" Width="32" Margin="0 0 15 0" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Center"/>
+                    <TextBlock Text="NEXT" Margin="15 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                </Grid>
+            </Button>
+        </Grid>
+        <Grid x:Name="Stock" Width="650" Height="580" Visibility="Hidden">
+            <Label Content="STOCK DETAILS" Width="345" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Margin="0" FontFamily="Roboto" FontSize="18" FontWeight="Bold" Foreground="#FF008000" Height="30"/>
+            <Grid Margin="0 0 0 40" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Label Content="Blood Group" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" FontSize="25" FontWeight="Bold" Foreground="#707070" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="180" Height="50"/>
+                    <Label Content="Quantity" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="180 0 0 0" FontSize="25" FontWeight="Bold" Foreground="#707070" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="180" Height="50"/>
+                    <Label Content="Rate" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="360 0 0 0" FontSize="25" FontWeight="Bold" Foreground="#707070" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="180" Height="50"/>
+                </Grid>
+                <Grid Margin="0 50 0 0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Label Content="A+" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 0 0 0" FontSize="25" FontWeight="Bold" Foreground="#707070" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="180" Height="50"/>
+                    <TextBox x:Name="quantityAP" Style="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="50" Margin="180 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="number_PreviewTextInput"/>
+                    <TextBox x:Name="rateAP" Style="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="50" Margin="360 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="number_PreviewTextInput"/>
+                </Grid>
+                <Grid Margin="0 100 0 0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Label Content="B+" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 0 0 0" FontSize="25" FontWeight="Bold" Foreground="#707070" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="180" Height="50"/>
+                    <TextBox x:Name="quantityBP" Style="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="50" Margin="180 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="number_PreviewTextInput"/>
+                    <TextBox x:Name="rateBP" Style="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="50" Margin="360 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="number_PreviewTextInput"/>
+                </Grid>
+                <Grid Margin="0 150 0 0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Label Content="O+" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 0 0 0" FontSize="25" FontWeight="Bold" Foreground="#707070" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="180" Height="50"/>
+                    <TextBox x:Name="quantityOP" Style="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="50" Margin="180 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="number_PreviewTextInput"/>
+                    <TextBox x:Name="rateOP" Style="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="50" Margin="360 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="number_PreviewTextInput"/>
+                </Grid>
+                <Grid Margin="0 200 0 0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Label Content="AB+" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 0 0 0" FontSize="25" FontWeight="Bold" Foreground="#707070" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="180" Height="50"/>
+                    <TextBox x:Name="quantityABP" Style="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="50" Margin="180 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="number_PreviewTextInput"/>
+                    <TextBox x:Name="rateABP" Style="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="50" Margin="360 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="number_PreviewTextInput"/>
+                </Grid>
+                <Grid Margin="0 250 0 0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Label Content="A-" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 0 0 0" FontSize="25" FontWeight="Bold" Foreground="#707070" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="180" Height="50"/>
+                    <TextBox x:Name="quantityAN" Style="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="50" Margin="180 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="number_PreviewTextInput"/>
+                    <TextBox x:Name="rateAN" Style="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="50" Margin="360 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="number_PreviewTextInput"/>
+                </Grid>
+                <Grid Margin="0 300 0 0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Label Content="B-" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 0 0 0" FontSize="25" FontWeight="Bold" Foreground="#707070" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="180" Height="50"/>
+                    <TextBox x:Name="quantityBN" Style="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="50" Margin="180 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="number_PreviewTextInput"/>
+                    <TextBox x:Name="rateBN" Style="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="50" Margin="360 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="number_PreviewTextInput"/>
+                </Grid>
+                <Grid Margin="0 350 0 0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Label Content="O-" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 0 0 0" FontSize="25" FontWeight="Bold" Foreground="#707070" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="180" Height="50"/>
+                    <TextBox x:Name="quantityON" Style="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="50" Margin="180 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="number_PreviewTextInput"/>
+                    <TextBox x:Name="rateON" Style="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="50" Margin="360 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="number_PreviewTextInput"/>
+                </Grid>
+                <Grid Margin="0 400 0 0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Label Content="AB-" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 0 0 0" FontSize="25" FontWeight="Bold" Foreground="#707070" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="180" Height="50"/>
+                    <TextBox x:Name="quantityABN" Style="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="50" Margin="180 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="number_PreviewTextInput"/>
+                    <TextBox x:Name="rateABN" Style="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="50" Margin="360 0 0 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="number_PreviewTextInput"/>
+                </Grid>
+            </Grid>
+            <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" x:Name="BBsubmit" Content="SUBMIT" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 515 0 0" FontSize="20" FontWeight="Bold" Foreground="#F2F3F4" Height="50" Width="135" Background="#5a2985" Cursor="Hand" Click="BBsubmit_Click"/>
         </Grid>
     </Grid>
 </Page>

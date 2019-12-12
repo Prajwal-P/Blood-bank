@@ -89,23 +89,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Database.cs" />
-    <Compile Include="DonorSignUp.xaml.cs">
-      <DependentUpon>DonorSignUp.xaml</DependentUpon>
-    </Compile>
     <Compile Include="HosDashboard.xaml.cs">
       <DependentUpon>HosDashboard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="HospitalName.xaml.cs">
-      <DependentUpon>HospitalName.xaml</DependentUpon>
     </Compile>
     <Compile Include="med_inst.xaml.cs">
       <DependentUpon>med_inst.xaml</DependentUpon>
     </Compile>
     <Compile Include="Signup.xaml.cs">
       <DependentUpon>Signup.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="StockDetails.xaml.cs">
-      <DependentUpon>StockDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="user.xaml.cs">
       <DependentUpon>user.xaml</DependentUpon>
@@ -128,17 +119,9 @@
     <Compile Include="UserViewRequests.xaml.cs">
       <DependentUpon>UserViewRequests.xaml</DependentUpon>
     </Compile>
-    <Page Include="DonorSignUp.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="HosDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="HospitalName.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="LoginPage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -159,10 +142,6 @@
     <Page Include="Signup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="StockDetails.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="user.xaml">
       <SubType>Designer</SubType>
