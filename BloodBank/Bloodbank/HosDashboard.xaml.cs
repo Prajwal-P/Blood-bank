@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -72,61 +72,20 @@ namespace BloodBank
         {
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
-                case "home" :
-                    hosDashboard.Content = new HosHomePage(id, name, type);
-                    break;
-                case "ReqBlood" :
-                    hosDashboard.Content = new HosBloodRquestPage(id);
-                    break;
-                case "ReqView" :
-                    hosDashboard.Content = new BB_ReqViewPage(id);
-                    break;
-                case "orders" :
-                    hosDashboard.Content = new HosOrdersPage(id);
-                    break;
-                case "settings" :
-                    hosDashboard.Content = new HosSettingsPage(id);
-                    break;
-                case "logout" :
-                    LoginPage login = new LoginPage();
-                    this.Hide();
-                    login.Show();
-                    break;
-                default:
-                    hosDashboard.Content = new HosHomePage(id, name, type);
-                    break;
-            }
-        }
-        private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
-        {
-            ButtonCloseMenu.Visibility = Visibility.Collapsed;
-            ButtonOpenMenu.Visibility = Visibility.Visible;
-            img.Visibility = Visibility.Collapsed;
-        }
-        private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
-        {
-            ButtonCloseMenu.Visibility = Visibility.Visible;
-            ButtonOpenMenu.Visibility = Visibility.Collapsed;
-            img.Visibility = Visibility.Visible;
-        }
-        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
-            {
                 case "home":
-                    userDashboard.Content = new UserDashboardView(id, username, mail, bgrp, loc, city, typ);
+                    hosDashboard.Content = new HosHomePage(id, name, type);
                     break;
                 case "ReqBlood":
-                    userDashboard.Content = new UserBloodRequestPage(id, hos_id);
+                    hosDashboard.Content = new HosBloodRquestPage(id);
                     break;
                 case "ReqView":
-                    userDashboard.Content = new UserViewRequests(id);
+                    hosDashboard.Content = new BB_ReqViewPage(id);
                     break;
                 case "orders":
-                    userDashboard.Content = new UserOrders(id);
+                    hosDashboard.Content = new HosOrdersPage(id);
                     break;
                 case "settings":
-                    userDashboard.Content = new UserSettings(id);
+                    hosDashboard.Content = new HosSettingsPage(id);
                     break;
                 case "logout":
                     LoginPage login = new LoginPage();
@@ -134,7 +93,7 @@ namespace BloodBank
                     login.Show();
                     break;
                 default:
-                    userDashboard.Content = new UserDashboardView(id, username, mail, bgrp, loc, city, typ);
+                    hosDashboard.Content = new HosHomePage(id, name, type);
                     break;
             }
         }
