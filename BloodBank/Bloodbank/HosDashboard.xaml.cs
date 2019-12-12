@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,15 +40,15 @@ namespace BloodBank
             this.website = website;
             this.email = email;
             this.type = type;
-            if (typ.Equals("68"))
+            if (type.Equals("66"))
             {
                 ReqBlood.Visibility = Visibility.Collapsed;
             }
-            else if (typ.Equals("82"))
+            else if (type.Equals("72"))
             {
                 ReqView.Visibility = Visibility.Collapsed;
             }
-            userDashboard.Content = new UserDashboardView(id, username, mail, bgrp, loc, city, typ);
+            hosDashboard.Content = new HosHomePage(id, name, type);
         }
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
@@ -65,11 +65,46 @@ namespace BloodBank
         {
             this.WindowState = WindowState.Minimized;
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
         {
-            LoginPage login = new LoginPage();
-            this.Hide();
-            login.Show();
+            ButtonCloseMenu.Visibility = Visibility.Collapsed;
+            ButtonOpenMenu.Visibility = Visibility.Visible;
+            img.Visibility = Visibility.Collapsed;
+        }
+        private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonCloseMenu.Visibility = Visibility.Visible;
+            ButtonOpenMenu.Visibility = Visibility.Collapsed;
+            img.Visibility = Visibility.Visible;
+        }
+        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
+            {
+                case "home":
+                    hosDashboard.Content = new HosHomePage(id, name, type);
+                    break;
+                case "ReqBlood":
+                    hosDashboard.Content = new HosBloodRquestPage(id);
+                    break;
+                case "ReqView":
+                    hosDashboard.Content = new BB_ReqViewPage(id);
+                    break;
+                case "orders":
+                    hosDashboard.Content = new HosOrdersPage(id);
+                    break;
+                case "settings":
+                    hosDashboard.Content = new HosSettingsPage(id);
+                    break;
+                case "logout":
+                    LoginPage login = new LoginPage();
+                    this.Hide();
+                    login.Show();
+                    break;
+                default:
+                    hosDashboard.Content = new HosHomePage(id, name, type);
+                    break;
+            }
         }
         private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
         {

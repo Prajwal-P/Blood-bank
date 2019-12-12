@@ -88,9 +88,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BB_ReqViewPage.xaml.cs">
+      <DependentUpon>BB_ReqViewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Database.cs" />
+    <Compile Include="HosBloodRquestPage.xaml.cs">
+      <DependentUpon>HosBloodRquestPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HosDashboard.xaml.cs">
       <DependentUpon>HosDashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HosHomePage.xaml.cs">
+      <DependentUpon>HosHomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HosOrdersPage.xaml.cs">
+      <DependentUpon>HosOrdersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HosSettingsPage.xaml.cs">
+      <DependentUpon>HosSettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="med_inst.xaml.cs">
       <DependentUpon>med_inst.xaml</DependentUpon>
@@ -107,8 +122,8 @@
     <Compile Include="UserDashboard.xaml.cs">
       <DependentUpon>UserDashboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserDashboardView.xaml.cs">
-      <DependentUpon>UserDashboardView.xaml</DependentUpon>
+    <Compile Include="UserHomePage.xaml.cs">
+      <DependentUpon>UserHomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserOrders.xaml.cs">
       <DependentUpon>UserOrders.xaml</DependentUpon>
@@ -119,7 +134,27 @@
     <Compile Include="UserViewRequests.xaml.cs">
       <DependentUpon>UserViewRequests.xaml</DependentUpon>
     </Compile>
+    <Page Include="BB_ReqViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HosBloodRquestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HosDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HosHomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HosOrdersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HosSettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,7 +190,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserDashboardView.xaml">
+    <Page Include="UserHomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

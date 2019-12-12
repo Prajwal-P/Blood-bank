@@ -9,7 +9,7 @@
         Title="HosDashboard" Height="800" Width="1500"
         WindowStartupLocation="CenterScreen" 
         ScrollViewer.VerticalScrollBarVisibility="Disabled" 
-        WindowStyle="None"
+        WindowStyle="None" ResizeMode="NoResize"
         Background="#F2F3F4">
     <Window.Resources>
         <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
@@ -29,7 +29,7 @@
                 <EasingDoubleKeyFrame KeyTime="0" Value="250"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="70"/>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="userDashboard">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="hosDashboard">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1250"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1430"/>
             </DoubleAnimationUsingKeyFrames>
@@ -39,7 +39,7 @@
                 <EasingDoubleKeyFrame KeyTime="0" Value="70"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="250"/>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="userDashboard">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="hosDashboard">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1430"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1250"/>
             </DoubleAnimationUsingKeyFrames>
@@ -54,14 +54,6 @@
         </EventTrigger>
     </Window.Triggers>
     <Grid>
-        <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Height="30" Width="1500" Background="#448AFF" MouseDown="Grid_MouseDown">
-            <Button Style="{x:Null}" Width="30" Height="30" HorizontalAlignment="Right" BorderThickness="0" Background="#448AFF" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Margin="0,0,6,0" Click="Close_Button_Click" Cursor="Hand">
-                <materialDesign:PackIcon Kind="CloseCircleOutline" Height="25" Width="25"/>
-            </Button>
-            <Button Style="{x:Null}" Width="30" Height="30" HorizontalAlignment="Right" BorderThickness="0" Background="#448AFF" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Padding="0" Margin="0 0 36 0" Click="Minimise_Button_Click" Cursor="Hand">
-                <materialDesign:PackIcon Kind="WindowMinimize" Width="25" Height="25"/>
-            </Button>
-        </Grid>
         <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Height="30" Width="1500" Background="#448AFF" MouseDown="Grid_MouseDown">
             <Button Style="{x:Null}" Width="30" Height="30" HorizontalAlignment="Right" BorderThickness="0" Background="#448AFF" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Margin="0,0,6,0" Click="Close_Button_Click" Cursor="Hand">
                 <materialDesign:PackIcon Kind="CloseCircleOutline" Height="25" Width="25"/>
@@ -134,6 +126,6 @@
                 </StackPanel>
             </Grid>
         </Grid>
-        <Frame x:Name="userDashboard" NavigationUIVisibility="Hidden" Width="1250" Height="770" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        <Frame x:Name="hosDashboard" NavigationUIVisibility="Hidden" Width="1250" Height="770" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
     </Grid>
 </Window>

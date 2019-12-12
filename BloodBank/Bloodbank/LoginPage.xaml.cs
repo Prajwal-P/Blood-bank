@@ -26,7 +26,6 @@ namespace BloodBank
             InitializeComponent();
         }
 
-        Database db = new Database();
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if(username.Text.Equals("Email") || password.Password.Equals(""))
@@ -117,7 +116,7 @@ namespace BloodBank
                 }
                 catch(Exception excp)
                 {
-                    MessageBox.Show(excp.Message);
+                    MessageBox.Show("Exception in login page\n" + excp.Message);
                 }
                 finally
                 {

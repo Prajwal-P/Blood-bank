@@ -73,7 +73,7 @@ namespace BloodBank
                 else if (typ.Equals("82"))
                 {
                     R.Visibility = Visibility.Visible;
-                    string query = "SELECT NAME, PHONE, LOCATION, CITY, WEBSITE, EMAIL FROM MED_INST WHERE TYPE_OF_MI='66'";
+                    string query = "SELECT NAME, PHONE, LOCATION, CITY, WEBSITE, EMAIL FROM MED_INST WHERE TYPE_OF_MI='66';";
                     SQLiteDataAdapter da = new SQLiteDataAdapter(query, d.con);
                     DataTable dt = new DataTable("USER");
                     da.Fill(dt);
