@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace BloodBank
 {
@@ -33,7 +22,7 @@ namespace BloodBank
             Database d = new Database();
             try
             {
-                string query = "SELECT NAME FROM USER WHERE PH_NO IN (SELECT DISTINCT RECIP_ID FROM ORDERS WHERE DONOR_ID='"+id+"');";
+                string query = "SELECT NAME FROM USER WHERE PH_NO IN (SELECT DISTINCT RECIP_ID FROM ORDERS WHERE DONOR_ID='" + id + "');";
                 d.openConnection();
                 SQLiteCommand cmd = new SQLiteCommand(query, d.con);
                 SQLiteDataReader dr = cmd.ExecuteReader();
@@ -46,7 +35,7 @@ namespace BloodBank
                 }
                 else
                 {
-                    RList.Items.Add("No donors");
+                    RList.Items.Add("No recipients");
                 }
                 query = "SELECT NAME FROM MED_INST WHERE TYPE_OF_MI='66';";
                 d.openConnection();
@@ -61,7 +50,7 @@ namespace BloodBank
                 }
                 else
                 {
-                    BBList.Items.Add("No BloodBanks");
+                    BBList.Items.Add("No blood banks");
                 }
             }
             catch (Exception ex)
