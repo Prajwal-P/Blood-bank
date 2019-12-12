@@ -101,7 +101,7 @@ namespace BloodBank
                 if ("Donor".Equals(type.Text))
                 {
                     t = 'D';
-                    signup.Visibility = Visibility.Hidden;
+                    Usersignup.Visibility = Visibility.Hidden;
                     DonorSignUp.Visibility = Visibility.Visible;
                     DSname.Content = name.Text;
                     DStype.Content = "Donor";
@@ -110,7 +110,7 @@ namespace BloodBank
                 else if ("Recipient".Equals(type.Text))
                 {
                     t = 'R';
-                    signup.Visibility = Visibility.Hidden;
+                    Usersignup.Visibility = Visibility.Hidden;
                     RecipSignUp.Visibility = Visibility.Visible;
                     RSname.Content = name.Text;
                     RStype.Content = "Recipient";
@@ -171,7 +171,7 @@ namespace BloodBank
                     try
                     {
                         d.openConnection();
-                        string query = "INSERT INTO DONOR(PH_NO, DOB, WEIGHT, LAST_DONATION_DATE) VALUES(@PH_NO, @DOB, @WEIGHT, @LAST_DONATION_DATE)";
+                        string query = "INSERT INTO DONOR(PH_NO, DOB, WEIGHT, LAST_DONATION_DATE) VALUES(@PH_NO, @DOB, @WEIGHT, @LAST_DONATION_DATE);";
                         SQLiteCommand cmd = new SQLiteCommand(query, d.con);
                         cmd.Parameters.AddWithValue("@PH_NO", ph_no.Text);
                         cmd.Parameters.AddWithValue("@DOB", b[2] + "-" + b[1] + "-" + b[0] + " 00:00:00.0000000");
@@ -200,7 +200,7 @@ namespace BloodBank
                     }
                     if(flag1 && flag2)
                     {
-                        MessageBox.Show("Donor added successfully");
+                        MessageBox.Show("Donor registered");
                     }
                 }
             }
@@ -243,7 +243,7 @@ namespace BloodBank
                 }
                 if (flag1 && flag2)
                 {
-                    MessageBox.Show("Recipient added successfully");
+                    MessageBox.Show("Recipient registered");
                 }
             }
         }
