@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SQLite;
+﻿using System.Data.SQLite;
 using System.IO;
 
 namespace BloodBank
@@ -29,7 +24,14 @@ namespace BloodBank
                 cmd.ExecuteNonQuery();
                 query = "CREATE TABLE DONOR (PH_NO NUMBER(10) NOT NULL, DOB DATE NOT NULL, WEIGHT NUMBER(2) NOT NULL, LAST_DONATION_DATE DATE NOT NULL, PRIMARY KEY(PH_NO, DOB), FOREIGN KEY (PH_NO) REFERENCES USER(PH_NO) ON DELETE CASCADE);";
                 cmd = new SQLiteCommand(query, con);
-                cmd.ExecuteNonQuery(); query = "CREATE TABLE ORDERS (OR_ID INTEGER PRIMARY KEY AUTOINCREMENT, B_GRP CHAR(10) NOT NULL, RECIP_ID NUMBER(10) NOT  NULL, DONOR_ID NUMBER(10) NOT NULL, MI_ID INTEGER NOT NULL, REQ_DATE DATE NOT NULL, DEL_DATE DATE, QUANTITY INTEGER NOT NULL, FOREIGN KEY(RECIP_ID) REFERENCES USER(PH_NO) ON DELETE CASCADE, FOREIGN KEY(DONOR_ID) REFERENCES USER(PH_NO) ON DELETE CASCADE, FOREIGN KEY(MI_ID) REFERENCES MED_INST(MI_ID) ON DELETE CASCADE);";
+                cmd.ExecuteNonQuery();
+                query = "CREATE TABLE ORDERS (OR_ID INTEGER PRIMARY KEY AUTOINCREMENT, B_GRP CHAR(10) NOT NULL, RECIP_ID NUMBER(10) NOT  NULL, DONOR_ID NUMBER(10) NOT NULL, MI_ID INTEGER NOT NULL, REQ_DATE DATE NOT NULL, DEL_DATE DATE, QUANTITY INTEGER NOT NULL, FOREIGN KEY(RECIP_ID) REFERENCES USER(PH_NO) ON DELETE CASCADE, FOREIGN KEY(DONOR_ID) REFERENCES USER(PH_NO) ON DELETE CASCADE, FOREIGN KEY(MI_ID) REFERENCES MED_INST(MI_ID) ON DELETE CASCADE);";
+                cmd = new SQLiteCommand(query, con);
+                cmd.ExecuteNonQuery();
+                query = "CREATE TRIGGER IF NOT EXISTS AFTER_RECIVE AFTER UPDATE ON ORDERS BEGIN UPDATE STOCK SET QUANTITY = QUANTITY-NEW.QUANTITY WHERE EXISTS( SELECT MI_ID FROM MED_INST WHERE MI_ID=NEW.DONOR_ID AND TYPE_OF_MI='66') AND NEW.DONOR_ID=STOCK.MI_ID AND NEW.B_GRP=STOCK.B_GRP; END;";
+                cmd = new SQLiteCommand(query, con);
+                cmd.ExecuteNonQuery();
+                query = "CREATE TRIGGER IF NOT EXISTS AFTER_DONATE AFTER UPDATE ON ORDERS BEGIN UPDATE STOCK SET QUANTITY = QUANTITY+NEW.QUANTITY WHERE EXISTS( SELECT MI_ID FROM MED_INST WHERE MI_ID=NEW.RECIP_ID AND TYPE_OF_MI='66') AND NEW.RECIP_ID=STOCK.MI_ID AND NEW.B_GRP=STOCK.B_GRP; END;";
                 cmd = new SQLiteCommand(query, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -48,7 +50,7 @@ namespace BloodBank
         }
         public void closeConnection()
         {
-            if(con.State!=System.Data.ConnectionState.Closed)
+            if (con.State != System.Data.ConnectionState.Closed)
             {
                 con.Close();
             }

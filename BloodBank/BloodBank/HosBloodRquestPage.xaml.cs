@@ -204,7 +204,7 @@ namespace BloodBank
                 catch (Exception ex)
                 {
                     flag = false;
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("<<<<<"+ex.Message+">>>>>");
                 }
                 finally
                 {
