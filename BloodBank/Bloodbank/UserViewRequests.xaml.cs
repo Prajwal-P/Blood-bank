@@ -61,7 +61,7 @@ namespace BloodBank
                 }
                 else
                 {
-                    BBList.Items.Add("No donors");
+                    BBList.Items.Add("No BloodBanks");
                 }
             }
             catch (Exception ex)
