@@ -23,15 +23,6 @@
                     <Label Content="Select any blood bank from the following list" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     <ComboBox Name="BBList" Style="{x:Null}" Width="350" Height="42" DropDownClosed="onBB_ComboBoxClosed" VerticalContentAlignment="Center" FontSize="18" Margin="60"/>
                 </Grid>
-                <!-- <Grid Width="350" Height="75" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0 20">
-                    <Label FontSize="12" FontWeight="Bold" Foreground="Red" VerticalAlignment="Top">NOTE :-</Label>
-                    <TextBlock TextWrapping="WrapWithOverflow" VerticalAlignment="Bottom" TextAlignment="Justify">
-                        You can request for blood through this app.
-                        For additional security we don't provide contact number
-                        of donors. If u want to contact them personally
-                        feel free to mail them.
-                    </TextBlock>
-                </Grid> -->
             </Grid>
             <Grid MaxWidth="450" Height="670" HorizontalAlignment="Center" Margin="700 0 0 0">
                 <Border BorderBrush="Wheat" BorderThickness="5" CornerRadius="20"/>
