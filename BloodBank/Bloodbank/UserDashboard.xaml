@@ -53,7 +53,7 @@
             <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
         </EventTrigger>
     </Window.Triggers>
-    <Grid Width="1500" Height="800" VerticalAlignment="Center" HorizontalAlignment="Center">
+    <Grid>
         <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Height="30" Width="1500" Background="#448AFF" MouseDown="Grid_MouseDown">
             <Button Style="{x:Null}" Width="30" Height="30" HorizontalAlignment="Right" BorderThickness="0" Background="#448AFF" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Margin="0,0,6,0" Click="Close_Button_Click" Cursor="Hand">
                 <materialDesign:PackIcon Kind="CloseCircleOutline" Height="25" Width="25"/>
