@@ -61,7 +61,7 @@ namespace BloodBank
                 }
                 else
                 {
-                    BBList.Items.Add("No donors");
+                    BBList.Items.Add("No BloodBanks");
                 }
             }
             catch (Exception ex)
@@ -98,7 +98,7 @@ namespace BloodBank
                 }
                 else
                 {
-                    MessageBox.Show("Some intennal error occured\nPlease select the donor again");
+                    MessageBox.Show("No option selected");
                 }
             }
             catch (Exception ex)
@@ -136,7 +136,7 @@ namespace BloodBank
                 }
                 else
                 {
-                    MessageBox.Show("Some intennal error occured\nPlease select the donor again");
+                    MessageBox.Show("No option selected");
                 }
             }
             catch (Exception ex)
