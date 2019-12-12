@@ -10,11 +10,12 @@ namespace BloodBank
     /// </summary>
     public partial class UserViewRequests : Page
     {
-        string id;
-        public UserViewRequests(string id)
+        string id, bb_ID = null, bGrp;
+        public UserViewRequests(string id, string bGrp)
         {
             InitializeComponent();
             this.id = id;
+            this.bGrp = bGrp;
             loadValues();
         }
         private void loadValues()
@@ -85,10 +86,10 @@ namespace BloodBank
                         R_City.Text = dr.GetString(dr.GetOrdinal("CITY"));
                     }
                 }
-                else
-                {
-                    MessageBox.Show("No option selected");
-                }
+                //else
+                //{
+                //    MessageBox.Show("No option selected");
+                //}
             }
             catch (Exception ex)
             {
@@ -105,7 +106,7 @@ namespace BloodBank
             R_details.Visibility = Visibility.Hidden;
             BB_details.Visibility = Visibility.Visible;
             Database d = new Database();
-            string query = "SELECT NAME, PHONE, WEBSITE, EMAIL, LOCATION, CITY FROM MED_INST WHERE NAME='" + BBList.Text + "'";
+            string query = "SELECT MI_ID, NAME, PHONE, WEBSITE, EMAIL, LOCATION, CITY FROM MED_INST WHERE NAME='" + BBList.Text + "'";
             try
             {
                 d.openConnection();
@@ -115,6 +116,7 @@ namespace BloodBank
                 {
                     if (dr.Read())
                     {
+                        bb_ID = dr["MI_ID"].ToString();
                         BB_Name.Text = dr["NAME"].ToString();
                         BB_Ph.Text = dr["PHONE"].ToString();
                         BB_Website.Text = dr.GetString(dr.GetOrdinal("WEBSITE"));
@@ -123,10 +125,10 @@ namespace BloodBank
                         BB_City.Text = dr.GetString(dr.GetOrdinal("CITY"));
                     }
                 }
-                else
-                {
-                    MessageBox.Show("No option selected");
-                }
+                //else
+                //{
+                //    MessageBox.Show("No option selected");
+                //}
             }
             catch (Exception ex)
             {
@@ -135,6 +137,39 @@ namespace BloodBank
             finally
             {
                 d.closeConnection();
+            }
+        }
+
+        private void DonateBB(object sender, RoutedEventArgs e)
+        {
+            bool flag = true;
+            Database d = new Database();
+            string query = "INSERT INTO ORDERS(B_GRP,RECIP_ID,DONOR_ID,MI_ID,REQ_DATE,DEL_DATE,QUANTITY) VALUES(@B_GRP,@RECIP_ID,@DONOR_ID,@MI_ID,@REQ_DATE,@DEL_DATE,@QUANTITY)";
+            try
+            {
+                d.openConnection();
+                SQLiteCommand cmd = new SQLiteCommand(query, d.con);
+                cmd.Parameters.AddWithValue("@B_GRP", bGrp);
+                cmd.Parameters.AddWithValue("@RECIP_ID", bb_ID);
+                cmd.Parameters.AddWithValue("@DONOR_ID", id);
+                cmd.Parameters.AddWithValue("@MI_ID", bb_ID);
+                cmd.Parameters.AddWithValue("@REQ_DATE", System.DateTime.Now);
+                cmd.Parameters.AddWithValue("@DEL_DATE", System.DateTime.Now);
+                cmd.Parameters.AddWithValue("@QUANTITY", "1");
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                flag = false;
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                d.closeConnection();
+            }
+            if(flag)
+            {
+                MessageBox.Show("Donation recorded successfully");
             }
         }
     }
