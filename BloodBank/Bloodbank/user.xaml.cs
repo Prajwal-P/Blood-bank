@@ -118,7 +118,7 @@ namespace BloodBank
                 }
             }
         }
-        public bool phNoCheck()
+        private bool phNoCheck()
         {
             bool flag = true;
             foreach (char i in ph_no.Text)
@@ -221,7 +221,7 @@ namespace BloodBank
                 try
                 {
                     d.openConnection();
-                    string query = "SELECT MI_ID FROM MED_INST WHERE NAME='" + bbName.Text + "';";
+                    string query = "SELECT MI_ID FROM MED_INST WHERE NAME='" + HosName.Text + "';";
                     SQLiteCommand cmd = new SQLiteCommand(query, d.con);
                     SQLiteDataReader dr = cmd.ExecuteReader();
                     if (dr.HasRows && dr.Read())
