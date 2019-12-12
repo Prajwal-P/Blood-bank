@@ -98,7 +98,7 @@ namespace BloodBank
                 }
                 else
                 {
-                    MessageBox.Show("Some intennal error occured\nPlease select the donor again");
+                    MessageBox.Show("No option selected");
                 }
             }
             catch (Exception ex)
@@ -136,7 +136,7 @@ namespace BloodBank
                 }
                 else
                 {
-                    MessageBox.Show("Some intennal error occured\nPlease select the donor again");
+                    MessageBox.Show("No option selected");
                 }
             }
             catch (Exception ex)
