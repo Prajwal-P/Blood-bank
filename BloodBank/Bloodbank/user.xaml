@@ -10,7 +10,7 @@
       Title="user">
 
     <Grid>
-        <Grid x:Name="Usersignup" Width="650" Height="580" Visibility="Hidden">
+        <Grid x:Name="Usersignup" Width="650" Height="580" Visibility="Visible">
             <Label Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,15,0,0" FontSize="20" FontWeight="Bold" Foreground="#707070" Padding="0"/>
             <Label Content="Email" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,70,0,0" FontSize="20" FontWeight="Bold" Foreground="#707070" Padding="0"/>
             <Label Content="Phone Number" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,125,0,0" FontSize="20" FontWeight="Bold" Foreground="#707070" Padding="0"/>
@@ -55,7 +55,7 @@
                 </Grid>
             </Button>
         </Grid>
-        <Grid x:Name="DonorSignUp" Visibility="Visible">
+        <Grid x:Name="DonorSignUp" Visibility="Hidden">
             <Label x:Name="DSname" Width="250" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="50 20" FontSize="26" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             <Grid Width="250" Height="50" VerticalAlignment="Top" HorizontalAlignment="Right"  Margin="30 20" >
                 <Label Content="Signing up as : " Width="150" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center"/>
