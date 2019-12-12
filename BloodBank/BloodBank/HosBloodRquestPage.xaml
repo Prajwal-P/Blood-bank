@@ -24,43 +24,54 @@
                 </Border>
                 <Grid  Margin="0 150 0 0" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <TextBlock Text="Select any blood bank from the following list to request blood" Width="400" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="WrapWithOverflow" TextAlignment="Center"/>
-                    <ComboBox Name="Req_List" Style="{x:Null}" Width="350" Height="42" DropDownClosed="Req_ComboBoxClosed" VerticalContentAlignment="Center" FontSize="18" Margin="60"/>
+                    <ComboBox Name="Req_List" Style="{x:Null}" Width="350" Height="42" DropDownClosed="Req_ComboBoxClosed" VerticalContentAlignment="Center" FontSize="18" Margin="70"/>
                 </Grid>
                 <Grid  Margin="0 350 0 0" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <TextBlock Text="Select blood bank from the following list who suplied blood to you" Width="400" Height="50" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="WrapWithOverflow" TextAlignment="Center"/>
-                    <ComboBox Name="Reciv_List" Style="{x:Null}" Width="350" Height="42" DropDownClosed="Reciv_ComboBoxClosed" VerticalContentAlignment="Center" FontSize="18" Margin="60"/>
+                    <ComboBox Name="Reciv_List" Style="{x:Null}" Width="350" Height="42" DropDownClosed="Reciv_ComboBoxClosed" VerticalContentAlignment="Center" FontSize="18" Margin="70"/>
                 </Grid>
             </Grid>
             <Grid MaxWidth="450" Height="670" HorizontalAlignment="Center" Margin="700 0 0 0">
                 <Border BorderBrush="Wheat" BorderThickness="5" CornerRadius="20"/>
                 <Grid Margin="50 45" Width="auto" Height="550" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Grid x:Name="Req" Visibility="Visible">
+                    <Grid x:Name="Req" Visibility="Hidden">
                         <Label Margin="0" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Green" FontSize="20" FontWeight="Bold">Request Blood</Label>
                         <Grid Margin="0,40,0,0" HorizontalAlignment="Center" Width="auto" Height="auto">
-                            <Label Margin="0" VerticalAlignment="Top">Name</Label>
-                            <TextBox x:Name="D_Name" Style="{x:Null}" Width="300" Height="40" VerticalAlignment="Top" Margin="0,36,0,0" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Margin="0,85,0,0" VerticalAlignment="Top">Blood Group</Label>
-                            <TextBox x:Name="B_grp" Style="{x:Null}" Width="300" Height="40" VerticalAlignment="Top" Margin="0,126,0,0" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Margin="0,180,0,0" VerticalAlignment="Top">Email</Label>
-                            <TextBox x:Name="Email" Style="{x:Null}" Width="300" Height="40" VerticalAlignment="Top" Margin="0,219,0,0" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Margin="0,275,0,0" VerticalAlignment="Top">Location</Label>
-                            <TextBox x:Name="Loc" Style="{x:Null}" Width="300" Height="40" VerticalAlignment="Top" Margin="0,318,0,0" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Margin="0,370,0,0" VerticalAlignment="Top">City</Label>
-                            <TextBox x:Name="City" Style="{x:Null}" Width="300" Height="40" VerticalAlignment="Top" Margin="0,406,0,0" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Margin="0" VerticalAlignment="Top" HorizontalAlignment="Center">Name</Label>
+                            <Label x:Name="BB_Name" Style="{x:Null}" Width="300" Height="40" VerticalAlignment="Top" Margin="0,31,0,0" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Margin="0,76,0,0" VerticalAlignment="Top" HorizontalAlignment="Center">Blood Group</Label>
+                            <ComboBox x:Name="B_grp" Style="{x:Null}" Width="300" Height="40" VerticalAlignment="Top" Margin="0,106,0,0" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                                <ComboBoxItem Content="A+" IsSelected="True"/>
+                                <ComboBoxItem Content="B+"/>
+                                <ComboBoxItem Content="O+"/>
+                                <ComboBoxItem Content="AB+"/>
+                                <ComboBoxItem Content="A-"/>
+                                <ComboBoxItem Content="B-"/>
+                                <ComboBoxItem Content="O-"/>
+                                <ComboBoxItem Content="AB-"/>
+                            </ComboBox>
+                            <Label Margin="0,152,0,0" VerticalAlignment="Top" HorizontalAlignment="Center">Email</Label>
+                            <Label x:Name="Email" Style="{x:Null}" Width="300" Height="40" VerticalAlignment="Top" Margin="0,182,0,0" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Margin="0,227,0,0" VerticalAlignment="Top" HorizontalAlignment="Center">Location</Label>
+                            <Label x:Name="Loc" Style="{x:Null}" Width="300" Height="40" VerticalAlignment="Top" Margin="0,256,0,0" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Margin="0,300,0,0" VerticalAlignment="Top" HorizontalAlignment="Center">City</Label>
+                            <Label x:Name="City" Style="{x:Null}" Width="300" Height="40" VerticalAlignment="Top" Margin="0,329,0,0" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Margin="0,375,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Quantity"/>
+                            <TextBox x:Name="Quantity" Style="{x:Null}" Width="300" Height="40" VerticalAlignment="Top" Margin="0,406,0,0" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewTextInput="number_PreviewTextInput"/>
                             <Button x:Name="BloodRequest" Width="200" Height="40" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,465,0,0" Content="Request Blood" FontSize="20" Click="BloodRequest_Click" />
                         </Grid>
                     </Grid>
-                    <Grid x:Name="Reciv" Visibility="Hidden">
+                    <Grid x:Name="Reciv" Visibility="Visible">
                         <Label Margin="0" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Green" FontSize="20" FontWeight="Bold">Recived Blood</Label>
                         <Grid Margin="0 40 0 0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="auto" Height="auto">
-                            <Label Margin="0" VerticalAlignment="Top">Order Id</Label>
-                            <TextBox x:Name="Reciv_Or_Id" Style="{x:Null}" Width="300" Height="40" VerticalAlignment="Top" Margin="0 36 0 0" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Margin="0 85 0 0" VerticalAlignment="Top">Name</Label>
-                            <TextBox x:Name="Reciv_D_Name" Style="{x:Null}" Width="300" Height="40" VerticalAlignment="Top" Margin="0 126 0 0" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Margin="0 180 0 0" VerticalAlignment="Top">Recivied blood group</Label>
-                            <TextBox x:Name="Reciv_B_grp" Style="{x:Null}" Width="300" Height="40" VerticalAlignment="Top" Margin="0 219 0 0" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Margin="0 275 0 0" VerticalAlignment="Top">Recived in hospital</Label>
-                            <TextBox x:Name="Reciv_Hos" Style="{x:Null}" Width="300" Height="40" VerticalAlignment="Top" Margin="0 318 0 0" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Margin="0" VerticalAlignment="Top" HorizontalAlignment="Center">Order Id</Label>
+                            <Label x:Name="Reciv_Or_Id" Style="{x:Null}" Width="300" Height="40" VerticalAlignment="Top" Margin="0 36 0 0" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Margin="0 85 0 0" VerticalAlignment="Top" HorizontalAlignment="Center">Name of blood bank</Label>
+                            <Label x:Name="Reciv_BB_Name" Style="{x:Null}" Width="300" Height="40" VerticalAlignment="Top" Margin="0 126 0 0" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Margin="0 180 0 0" VerticalAlignment="Top" HorizontalAlignment="Center">Recivied blood group</Label>
+                            <Label x:Name="Reciv_B_grp" Style="{x:Null}" Width="300" Height="40" VerticalAlignment="Top" Margin="0 219 0 0" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Margin="0 275 0 0" VerticalAlignment="Top" HorizontalAlignment="Center">Recived quantity</Label>
+                            <TextBox x:Name="Reciv_quantity" Style="{x:Null}" Width="300" Height="40" VerticalAlignment="Top" Margin="0 318 0 0" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewTextInput="number_PreviewTextInput"/>
                             <Label Margin="0 370 0 0" VerticalAlignment="Top">Recivied date</Label>
                             <DatePicker x:Name="Reciv_Date" Style="{x:Null}" Width="300" Height="40" VerticalAlignment="Top" Margin="0 406 0 0" FontSize="18" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"/>
                             <Button x:Name="BloodRecived" Width="200" Height="40" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 465 0 0" Content="Recived Blood" FontSize="20" Click="BloodRecived_Click" />

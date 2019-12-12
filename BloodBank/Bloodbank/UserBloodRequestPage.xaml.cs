@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace BloodBank
 {
@@ -21,7 +10,7 @@ namespace BloodBank
     /// </summary>
     public partial class UserBloodRequestPage : Page
     {
-        string id, d_id=null, hos_id, or_Id;
+        string id, d_id = null, hos_id, or_Id;
         public UserBloodRequestPage(string id, string hos_id)
         {
             InitializeComponent();
@@ -39,9 +28,9 @@ namespace BloodBank
                 d.openConnection();
                 SQLiteCommand cmd = new SQLiteCommand(query, d.con);
                 SQLiteDataReader dr = cmd.ExecuteReader();
-                if(dr.HasRows)
+                if (dr.HasRows)
                 {
-                    while(dr.Read())
+                    while (dr.Read())
                     {
                         Req_List.Items.Add(dr.GetString(dr.GetOrdinal("NAME")));
                     }
@@ -51,7 +40,7 @@ namespace BloodBank
                     Req_List.Items.Add("No donors");
                 }
                 Reciv_List.Items.Clear();
-                query = "SELECT U.NAME, O.OR_ID FROM USER U,ORDERS O WHERE DEL_DATE IS NULL AND O.DONOR_ID=U.PH_NO AND O.RECIP_ID='"+id+"';";
+                query = "SELECT U.NAME, O.OR_ID FROM USER U,ORDERS O WHERE DEL_DATE IS NULL AND O.DONOR_ID=U.PH_NO AND O.RECIP_ID='" + id + "';";
                 cmd = new SQLiteCommand(query, d.con);
                 dr = cmd.ExecuteReader();
                 if (dr.HasRows)
@@ -66,7 +55,7 @@ namespace BloodBank
                     Reciv_List.Items.Add("No donors");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -89,7 +78,7 @@ namespace BloodBank
                 SQLiteDataReader dr = cmd.ExecuteReader();
                 if (dr.HasRows)
                 {
-                    if(dr.Read())
+                    if (dr.Read())
                     {
                         d_id = dr["PH_NO"].ToString();
                         D_Name.Text = dr.GetString(dr.GetOrdinal("NAME"));

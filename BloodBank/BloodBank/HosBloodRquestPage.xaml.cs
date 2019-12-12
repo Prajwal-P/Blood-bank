@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace BloodBank
 {
@@ -21,12 +11,12 @@ namespace BloodBank
     /// </summary>
     public partial class HosBloodRquestPage : Page
     {
-        string id;
+        string id, bb_ID = null, or_ID = null;
         public HosBloodRquestPage(string id)
         {
             InitializeComponent();
             this.id = id;
-            loadValues()
+            loadValues();
         }
 
         private void loadValues()
@@ -35,7 +25,7 @@ namespace BloodBank
             try
             {
                 Req_List.Items.Clear();
-                string query = "SELECT NAME FROM USER WHERE TYPE_OF_USER='68';";
+                string query = "SELECT NAME FROM MED_INST WHERE TYPE_OF_MI='66';";
                 d.openConnection();
                 SQLiteCommand cmd = new SQLiteCommand(query, d.con);
                 SQLiteDataReader dr = cmd.ExecuteReader();
@@ -48,10 +38,10 @@ namespace BloodBank
                 }
                 else
                 {
-                    Req_List.Items.Add("No donors");
+                    Req_List.Items.Add("No blood banks");
                 }
                 Reciv_List.Items.Clear();
-                query = "SELECT U.NAME, O.OR_ID FROM USER U,ORDERS O WHERE DEL_DATE IS NULL AND O.DONOR_ID=U.PH_NO AND O.RECIP_ID='" + id + "';";
+                query = "SELECT M.NAME, O.OR_ID FROM MED_INST M,ORDERS O WHERE DEL_DATE IS NULL AND O.DONOR_ID=M.MI_ID AND O.RECIP_ID='" + id + "';";
                 cmd = new SQLiteCommand(query, d.con);
                 dr = cmd.ExecuteReader();
                 if (dr.HasRows)
@@ -63,7 +53,7 @@ namespace BloodBank
                 }
                 else
                 {
-                    Reciv_List.Items.Add("No donors");
+                    Reciv_List.Items.Add("No orders placed");
                 }
             }
             catch (Exception ex)
@@ -83,7 +73,7 @@ namespace BloodBank
             Database d = new Database();
             try
             {
-                string query = "SELECT PH_NO, NAME, B_GRP, EMAIL, LOCATION, CITY FROM USER WHERE NAME='" + Req_List.Text + "';";
+                string query = "SELECT MI_ID, NAME, EMAIL, LOCATION, CITY FROM MED_INST WHERE NAME='" + Req_List.Text + "';";
                 d.openConnection();
                 SQLiteCommand cmd = new SQLiteCommand(query, d.con);
                 SQLiteDataReader dr = cmd.ExecuteReader();
@@ -91,12 +81,11 @@ namespace BloodBank
                 {
                     if (dr.Read())
                     {
-                        d_id = dr["PH_NO"].ToString();
-                        D_Name.Text = dr.GetString(dr.GetOrdinal("NAME"));
-                        B_grp.Text = dr.GetString(dr.GetOrdinal("B_GRP"));
-                        Email.Text = dr.GetString(dr.GetOrdinal("EMAIL"));
-                        Loc.Text = dr.GetString(dr.GetOrdinal("LOCATION"));
-                        City.Text = dr.GetString(dr.GetOrdinal("CITY"));
+                        bb_ID = dr["MI_ID"].ToString();
+                        BB_Name.Content = dr.GetString(dr.GetOrdinal("NAME"));
+                        Email.Content = dr.GetString(dr.GetOrdinal("EMAIL"));
+                        Loc.Content = dr.GetString(dr.GetOrdinal("LOCATION"));
+                        City.Content = dr.GetString(dr.GetOrdinal("CITY"));
                     }
                 }
                 //else
@@ -114,7 +103,47 @@ namespace BloodBank
             }
         }
 
-        private void Donate_ComboBoxClosed(object sender, EventArgs e)
+        private void BloodRequest_Click(object sender, RoutedEventArgs e)
+        {
+            if(Quantity.Text.Equals("") && !numberCheck(Quantity))
+            {
+                MessageBox.Show("Enter a valid number as quantity");
+            }
+            else
+            {
+                bool flag = true;
+                Database d = new Database();
+                string query = "INSERT INTO ORDERS(B_GRP,RECIP_ID,DONOR_ID,MI_ID,REQ_DATE,QUANTITY) VALUES(@B_GRP,@RECIP_ID,@DONOR_ID,@MI_ID,@REQ_DATE,@QUANTITY)";
+                try
+                {
+                    d.openConnection();
+                    SQLiteCommand cmd = new SQLiteCommand(query, d.con);
+                    cmd.Parameters.AddWithValue("@B_GRP", B_grp.Text);
+                    cmd.Parameters.AddWithValue("@RECIP_ID", id);
+                    cmd.Parameters.AddWithValue("@DONOR_ID", bb_ID);
+                    cmd.Parameters.AddWithValue("@MI_ID", id);
+                    cmd.Parameters.AddWithValue("@REQ_DATE", System.DateTime.Now);
+                    cmd.Parameters.AddWithValue("@QUANTITY", Quantity.Text);
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    flag = false;
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    d.closeConnection();
+                    loadValues();
+                }
+                if (flag)
+                {
+                    MessageBox.Show("Order placed successfully");
+                }
+            }
+        }
+
+        private void Reciv_ComboBoxClosed(object sender, EventArgs e)
         {
             Req.Visibility = Visibility.Hidden;
             Reciv.Visibility = Visibility.Visible;
@@ -122,8 +151,8 @@ namespace BloodBank
             try
             {
                 string[] str = Reciv_List.Text.Split('|');
-                or_Id = str[0].Trim();
-                string query = "SELECT U.NAME, O.B_GRP, H.NAME, O.DONOR_ID FROM ORDERS O, MED_INST H, USER U WHERE O.OR_ID='" + or_Id + "' AND H.MI_ID=O.MI_ID AND O.DONOR_ID=U.PH_NO;";
+                or_ID = str[0].Trim();
+                string query = "SELECT H.NAME, O.B_GRP, O.QUANTITY FROM ORDERS O, MED_INST H WHERE O.OR_ID='" + or_ID + "' AND H.MI_ID=O.DONOR_ID;";
                 d.openConnection();
                 SQLiteCommand cmd = new SQLiteCommand(query, d.con);
                 SQLiteDataReader dr = cmd.ExecuteReader();
@@ -131,11 +160,10 @@ namespace BloodBank
                 {
                     if (dr.Read())
                     {
-                        d_id = dr["DONOR_ID"].ToString();
-                        Reciv_Or_Id.Text = or_Id;
-                        Reciv_D_Name.Text = dr.GetString(0);
-                        Reciv_B_grp.Text = dr.GetString(dr.GetOrdinal("B_GRP"));
-                        Reciv_Hos.Text = dr.GetString(2);
+                        Reciv_Or_Id.Content = or_ID;
+                        Reciv_BB_Name.Content = dr.GetString(dr.GetOrdinal("NAME"));
+                        Reciv_B_grp.Content = dr.GetString(dr.GetOrdinal("B_GRP"));
+                        Reciv_quantity.Text = dr["QUANTITY"].ToString();
                     }
                 }
                 //else
@@ -153,67 +181,57 @@ namespace BloodBank
             }
         }
 
-        private void BloodRequest_Click(object sender, RoutedEventArgs e)
+        private void BloodRecived_Click(object sender, RoutedEventArgs e)
         {
-            bool flag = true;
-            Database d = new Database();
-            string query = "INSERT INTO ORDERS(B_GRP,RECIP_ID,DONOR_ID,MI_ID,REQ_DATE,QUANTITY) VALUES(@B_GRP,@RECIP_ID,@DONOR_ID,@MI_ID,@REQ_DATE,@QUANTITY)";
-            try
+            if (Reciv_quantity.Text.Equals("") || Reciv_Date.Text.Equals("") || !numberCheck(Reciv_quantity))
             {
-                d.openConnection();
-                SQLiteCommand cmd = new SQLiteCommand(query, d.con);
-                cmd.Parameters.AddWithValue("@B_GRP", B_grp.Text);
-                cmd.Parameters.AddWithValue("@RECIP_ID", id);
-                cmd.Parameters.AddWithValue("@DONOR_ID", d_id);
-                cmd.Parameters.AddWithValue("@MI_ID", hos_id);
-                cmd.Parameters.AddWithValue("@REQ_DATE", System.DateTime.Now);
-                cmd.Parameters.AddWithValue("@QUANTITY", "1");
-                cmd.ExecuteNonQuery();
+                MessageBox.Show("Enter a valid value for quantity and received date");
             }
-            catch (Exception ex)
+            else
             {
-                flag = false;
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                d.closeConnection();
-                loadValues();
-            }
-            if (flag)
-            {
-                MessageBox.Show("Order placed successfully");
+                bool flag = true;
+                Database d = new Database();
+                try
+                {
+                    string[] a = Reciv_Date.Text.Split('-');
+                    string s = a[2] + "-" + a[1] + "-" + a[0] + " 00:00:00.0000000";
+                    string query = "UPDATE ORDERS SET DEL_DATE=@DEL_DATE WHERE OR_ID='" + or_ID + "';";
+                    d.openConnection();
+                    SQLiteCommand cmd = new SQLiteCommand(query, d.con);
+                    cmd.Parameters.AddWithValue("@DEL_DATE", s);
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    flag = false;
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    d.closeConnection();
+                    loadValues();
+                }
+                if (flag)
+                {
+                    MessageBox.Show("Order compeleted successfully");
+                }
             }
         }
 
-        private void BloodRecived_Click(object sender, RoutedEventArgs e)
+        private void number_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
-            bool flag = true;
-            Database d = new Database();
-            try
+            Regex regex = new Regex("[^0-9.]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private bool numberCheck(TextBox textBox)
+        {
+            foreach (char i in textBox.Text)
             {
-                string[] a = Reciv_Date.Text.Split('-');
-                string s = a[2] + "-" + a[1] + "-" + a[0] + " 00:00:00.0000000";
-                string query = "UPDATE ORDERS SET DEL_DATE=@DEL_DATE WHERE OR_ID='" + or_Id + "';";
-                d.openConnection();
-                SQLiteCommand cmd = new SQLiteCommand(query, d.con);
-                cmd.Parameters.AddWithValue("@DEL_DATE", s);
-                cmd.ExecuteNonQuery();
+                if (i > '9' || i < '0')
+                    return false;
             }
-            catch (Exception ex)
-            {
-                flag = false;
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                d.closeConnection();
-                loadValues();
-            }
-            if (flag)
-            {
-                MessageBox.Show("Order compeleted successfully");
-            }
+            return true;
         }
     }
 }
