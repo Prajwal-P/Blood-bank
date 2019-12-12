@@ -11,9 +11,9 @@
     <Grid>
         <Grid>
             <Label x:Name="name" Width="250" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="50 20" FontSize="26" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-            <Grid Width="250" Height="50" VerticalAlignment="Top" HorizontalAlignment="Right"  Margin="30 20" >
-                <Label Content="Logged in as : " Width="150" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center"/>
-                <Label x:Name="type" Width="100" Height="50" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
+            <Grid Width="auto" Height="50" VerticalAlignment="Top" HorizontalAlignment="Right"  Margin="30 20" >
+                <Label Content="Logged in as : " Width="150" Margin="0 0 150 0" FontSize="20" VerticalContentAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center"/>
+                <Label x:Name="type" Width="150" Height="50" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
             </Grid>
             <Grid x:Name="H" Margin="50,100,50,50" Visibility="Hidden">
                 <Grid Width="auto" HorizontalAlignment="Center" Margin="0 0 600 0" MaxWidth="575">
