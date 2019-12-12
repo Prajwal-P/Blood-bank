@@ -13,7 +13,7 @@ namespace BloodBank
         public SQLiteConnection con;
         public Database()
         {
-            if (!File.Exists("BloodBankDB.sqlite3"))
+            if (!File.Exists("../../BloodBankDB.sqlite3"))
             {
                 SQLiteConnection.CreateFile("../../BloodBankDB.sqlite3");
                 con = new SQLiteConnection("Data Source=../../BloodBankDB.sqlite3;Version=3;");
