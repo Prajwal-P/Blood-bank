@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -94,47 +94,6 @@ namespace BloodBank
                     break;
                 default:
                     hosDashboard.Content = new HosHomePage(id, name, type);
-                    break;
-            }
-        }
-        private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
-        {
-            ButtonCloseMenu.Visibility = Visibility.Collapsed;
-            ButtonOpenMenu.Visibility = Visibility.Visible;
-            img.Visibility = Visibility.Collapsed;
-        }
-        private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
-        {
-            ButtonCloseMenu.Visibility = Visibility.Visible;
-            ButtonOpenMenu.Visibility = Visibility.Collapsed;
-            img.Visibility = Visibility.Visible;
-        }
-        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
-            {
-                case "home":
-                    userDashboard.Content = new UserDashboardView(id, username, mail, bgrp, loc, city, typ);
-                    break;
-                case "ReqBlood":
-                    userDashboard.Content = new UserBloodRequestPage(id, hos_id);
-                    break;
-                case "ReqView":
-                    userDashboard.Content = new UserViewRequests(id);
-                    break;
-                case "orders":
-                    userDashboard.Content = new UserOrders(id);
-                    break;
-                case "settings":
-                    userDashboard.Content = new UserSettings(id);
-                    break;
-                case "logout":
-                    LoginPage login = new LoginPage();
-                    this.Hide();
-                    login.Show();
-                    break;
-                default:
-                    userDashboard.Content = new UserDashboardView(id, username, mail, bgrp, loc, city, typ);
                     break;
             }
         }
