@@ -72,22 +72,22 @@ namespace BloodBank
         {
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
-                case "home":
+                case "home" :
                     hosDashboard.Content = new HosHomePage(id, name, type);
                     break;
-                case "ReqBlood":
+                case "ReqBlood" :
                     hosDashboard.Content = new HosBloodRquestPage(id);
                     break;
-                case "ReqView":
+                case "ReqView" :
                     hosDashboard.Content = new BB_ReqViewPage(id);
                     break;
-                case "orders":
+                case "orders" :
                     hosDashboard.Content = new HosOrdersPage(id);
                     break;
-                case "settings":
+                case "settings" :
                     hosDashboard.Content = new HosSettingsPage(id);
                     break;
-                case "logout":
+                case "logout" :
                     LoginPage login = new LoginPage();
                     this.Hide();
                     login.Show();
