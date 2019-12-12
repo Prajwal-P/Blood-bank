@@ -75,7 +75,7 @@ namespace BloodBank
                     }
                     else
                     {
-                        query = "SELECT MI_ID,EMAIL,PASSWORD,NAME FROM MED_INST WHERE EMAIL='" + username.Text + "';";
+                        query = "SELECT * FROM MED_INST WHERE EMAIL='" + username.Text + "';";
                         cmd = new SQLiteCommand(query, d.con);
                         result = cmd.ExecuteReader();
                         if (result.HasRows)
@@ -87,7 +87,15 @@ namespace BloodBank
                                     inavlidLogin.Visibility = Visibility.Hidden;
                                     empty.Visibility = Visibility.Hidden;
                                     notFound.Visibility = Visibility.Hidden;
-                                    HosDashboard hos = new HosDashboard(result["MI_ID"].ToString(), result["NAME"].ToString());
+                                    HosDashboard hos = new HosDashboard(
+                                        result["MI_ID"].ToString(),
+                                        result["NAME"].ToString(),
+                                        result["PHONE"].ToString(),
+                                        result["LOCATION"].ToString(),
+                                        result["CITY"].ToString(),
+                                        result["WEBSITE"].ToString(),
+                                        result["EMAIL"].ToString(),
+                                        result["TYPE_OF_MI"].ToString());
                                     this.Hide();
                                     hos.Show();
                                 }
