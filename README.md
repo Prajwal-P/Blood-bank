@@ -13,7 +13,7 @@ The ‘BLOOD BANK MANAGEMENT SYSTEM’ project is to interconnect all the blood 
 ![Image of ER-Diagram](https://github.com/Prajwal-P/Blood-bank/raw/master/Screenshots/ER-diagram.png)
 
 ## ER_Mapping
-![Image of ER-Mapping](https://github.com/Prajwal-P/Blood-bank/raw/master/Screenshots/ER-diagram.png)
+![Image of ER-Mapping](https://github.com/Prajwal-P/Blood-bank/raw/master/Screenshots/ER-Mapping.png)
 
 ## Connecting to a SQLITE database
 Install-Package System.Data.SQLite -Version 3 
